@@ -1,4 +1,4 @@
-package com.example.footbalschedule.adapter
+package com.example.footbalschedule.league
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -36,7 +36,10 @@ class LeagueRecyclerviewAdapter(
         fun bind(data: League, listener: (League) -> Unit)
         {
             leagueName.text = data.leagueName
-            Glide.with(view).load(data.leagueBadge).into(leagueBadge)
+            Glide.with(view)
+                .load(data.leagueBadge)
+                .placeholder(R.drawable.ic_launcher_foreground)
+                .into(leagueBadge)
             itemView.setOnClickListener { listener(data) }
         }
     }
