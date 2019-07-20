@@ -1,6 +1,8 @@
 package com.example.footbalschedule.app
 
+import android.content.Context
 import android.view.View
+import android.widget.Toast
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
@@ -79,4 +81,8 @@ fun getMonth(month: Int) = when (month){
     10->"Nov"
     11->"Des"
     else -> "-"
+}
+
+fun showToast(context: Context, message: String){
+    Toast.makeText(context, message, Toast.LENGTH_LONG).show()
 }
