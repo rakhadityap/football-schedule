@@ -3,16 +3,23 @@ package com.example.footbalschedule.leaguedetail
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import com.example.footbalschedule.match.MatchFragment
+import com.example.footbalschedule.standings.StandingsFragment
+import com.example.footbalschedule.team.TeamFragment
 
 class ViewPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm)
 {
-    override fun getItem(position: Int): Fragment
-    {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    val title = listOf("Match", "Standings", "Team")
+    val pages = listOf(
+        MatchFragment(),
+        StandingsFragment(),
+        TeamFragment()
+    )
 
-    override fun getCount(): Int
-    {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun getItem(position: Int): Fragment = pages[position]
+
+    override fun getCount(): Int = pages.size
+
+    override fun getPageTitle(position: Int): CharSequence? = title[position]
+
 }
