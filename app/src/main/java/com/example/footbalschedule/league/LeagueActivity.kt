@@ -9,12 +9,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.footbalschedule.R
 import com.example.footbalschedule.app.done
 import com.example.footbalschedule.app.refresh
+import com.example.footbalschedule.app.showToast
 import com.example.footbalschedule.leaguedetail.LeagueDetailActivity
 import com.example.footbalschedule.model.League
 import kotlinx.android.synthetic.main.activity_main.*
 
 class LeagueActivity : AppCompatActivity(), LeagueView
 {
+    override fun showError(message: String)
+    {
+        showToast(this, message)
+    }
+
     val adapter: LeagueRecyclerviewAdapter
     val leagueList: MutableList<League> = mutableListOf()
     val leaguePresenter = LeaguePresenter(this)
