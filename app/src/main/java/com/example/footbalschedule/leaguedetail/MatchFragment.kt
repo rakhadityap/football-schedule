@@ -7,28 +7,43 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.footbalschedule.R
-import com.example.footbalschedule.app.showToast
+import com.example.footbalschedule.model.Match
 
 /**
  * A simple [Fragment] subclass.
  *
  */
-class MatchFragment : Fragment()
+class MatchFragment : Fragment(), MatchView
 {
-    val leagueId by lazy {
-        activity?.intent?.getStringExtra("leagueId")
-    }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View?
     {
         val view = inflater.inflate(R.layout.fragment_match, container, false)
 
-        showToast(activity?.applicationContext!!, leagueId.toString())
+        val presenter = MatchPresenter(this)
+        val leagueId: String = activity?.intent?.getStringExtra("leagueId") ?: "0000"
+
+        presenter.getFutureMatches(leagueId)
+        presenter.getPastMatches(leagueId)
 
         return view
+    }
+
+    override fun showFutureMatches(matches: List<Match>)
+    {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun showPastMatches(matches: List<Match>)
+    {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun showError(message: String)
+    {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
 
