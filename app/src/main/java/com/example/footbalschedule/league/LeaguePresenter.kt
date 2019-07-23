@@ -9,14 +9,14 @@ import retrofit2.Response
 
 class LeaguePresenter(private val view: LeagueView)
 {
-    public fun getLeagues()
+    fun getLeagues()
     {
         val call: Call<LeagueResponse> = apiService.getLeagueList()
         call.enqueue(object : Callback<LeagueResponse>
         {
             override fun onFailure(call: Call<LeagueResponse>, t: Throwable)
             {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                view.showError(t.localizedMessage)
             }
 
             override fun onResponse(call: Call<LeagueResponse>, response: Response<LeagueResponse>)

@@ -38,7 +38,6 @@ class LeagueRecyclerviewAdapter(
             leagueName.text = data.leagueName
             Glide.with(view)
                 .load(data.leagueBadge)
-                .placeholder(R.drawable.ic_launcher_foreground)
                 .into(leagueBadge)
             itemView.setOnClickListener { listener(data) }
         }

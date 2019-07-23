@@ -16,31 +16,18 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class LeagueActivity : AppCompatActivity(), LeagueView
 {
-    override fun showError(message: String)
-    {
-        showToast(this, message)
-    }
-
     val adapter: LeagueRecyclerviewAdapter
+
     val leagueList: MutableList<League> = mutableListOf()
     val leaguePresenter = LeaguePresenter(this)
-
     init
     {
         adapter = LeagueRecyclerviewAdapter(leagueList, this) { league ->
             val intent = Intent(this, LeagueDetailActivity::class.java).apply {
-                putExtra("LeagueId", league.leagueId)
+                putExtra("leagueId", league.leagueId)
             }
             startActivity(intent)
         }
-    }
-
-    override fun showLeague(leagues: List<League>)
-    {
-        leagueList.clear()
-        leagueList.addAll(leagues)
-        adapter.notifyDataSetChanged()
-        league_list_refreshview.done()
     }
 
     override fun onCreate(savedInstanceState: Bundle?)
@@ -56,6 +43,20 @@ class LeagueActivity : AppCompatActivity(), LeagueView
         }
         league_list_refreshview.refresh()
         leaguePresenter.getLeagues()
+    }
+
+    override fun showLeague(leagues: List<League>)
+    {
+        leagueList.clear()
+        leagueList.addAll(leagues)
+        adapter.notifyDataSetChanged()
+        league_list_refreshview.done()
+    }
+
+    override fun showError(message: String)
+    {
+        showToast(this, message)
+        league_list_refreshview.done()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean

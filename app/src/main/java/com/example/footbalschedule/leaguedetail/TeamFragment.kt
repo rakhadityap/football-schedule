@@ -1,4 +1,4 @@
-package com.example.footbalschedule.match
+package com.example.footbalschedule.leaguedetail
 
 
 import android.os.Bundle
@@ -12,7 +12,7 @@ import com.example.footbalschedule.R
  * A simple [Fragment] subclass.
  *
  */
-class MatchFragment : Fragment()
+class TeamFragment : Fragment()
 {
 
     override fun onCreateView(
@@ -21,7 +21,7 @@ class MatchFragment : Fragment()
     ): View?
     {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_match, container, false)
+        return inflater.inflate(R.layout.fragment_team, container, false)
     }
 
 
