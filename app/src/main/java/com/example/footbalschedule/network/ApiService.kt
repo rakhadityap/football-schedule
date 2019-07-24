@@ -15,10 +15,10 @@ interface ApiService
     fun getLeagueDetail(@Query("id") id: String?): Call<LeagueDetailResponse>
 
     @GET("eventsnextleague.php")
-    fun getSchedule(@Query("id") id: String?): Call<FootbalScheduleResponse>
+    fun getSchedule(@Query("id") id: String?): Call<MatchResponse>
 
     @GET("eventspastleague.php")
-    fun getPastEvents(@Query("id") id: String?): Call<FootbalScheduleResponse>
+    fun getPastEvents(@Query("id") id: String?): Call<MatchResponse>
 
     @GET("")
     fun getStandings(@Query("l") id: String, @Query("s") season: String = "1819" ): Call<StandingsResponse>

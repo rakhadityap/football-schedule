@@ -1,4 +1,4 @@
-package com.example.footbalschedule.leaguedetail
+package com.example.footbalschedule.match
 
 
 import android.os.Bundle

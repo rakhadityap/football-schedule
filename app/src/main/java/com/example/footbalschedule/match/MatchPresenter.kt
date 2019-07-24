@@ -1,4 +1,4 @@
-package com.example.footbalschedule.leaguedetail
+package com.example.footbalschedule.match
 
 import com.example.footbalschedule.app.Const
 import com.example.footbalschedule.model.MatchResponse
