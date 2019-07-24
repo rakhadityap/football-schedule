@@ -20,6 +20,7 @@ class LeagueActivity : AppCompatActivity(), LeagueView
 
     val leagueList: MutableList<League> = mutableListOf()
     val leaguePresenter = LeaguePresenter(this)
+
     init
     {
         adapter = LeagueRecyclerviewAdapter(leagueList, this) { league ->

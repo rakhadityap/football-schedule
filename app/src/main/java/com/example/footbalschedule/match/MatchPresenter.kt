@@ -22,7 +22,11 @@ class MatchPresenter(private val view: MatchView)
                 call: Call<MatchResponse>, response: Response<MatchResponse>
             )
             {
-                view.showFutureMatches(response.body()!!.events)
+                try {
+                    view.showFutureMatches(response.body()!!.events)
+                } catch (e: Exception){
+                    view.showError(e.localizedMessage)
+                }
             }
 
         })
@@ -43,7 +47,11 @@ class MatchPresenter(private val view: MatchView)
                 response: Response<MatchResponse>
             )
             {
-                view.showPastMatches(response.body()!!.events)
+                try {
+                    view.showPastMatches(response.body()!!.events)
+                } catch (e: Exception){
+                    view.showError(e.localizedMessage)
+                }
             }
 
         })
