@@ -51,8 +51,8 @@ class MatchFragment : Fragment(), MatchView {
         val presenter = MatchPresenter(this)
         val leagueId: String = activity?.intent?.getStringExtra("leagueId") ?: "0000"
 
-        view.last_match_recyclerview.layoutManager = LinearLayoutManager(mContext, RecyclerView.VERTICAL, false)
-        view.next_match_recyclerview.layoutManager = LinearLayoutManager(mContext, RecyclerView.VERTICAL, false)
+        view.last_match_recyclerview.layoutManager = LinearLayoutManager(mContext, RecyclerView.HORIZONTAL, false)
+        view.next_match_recyclerview.layoutManager = LinearLayoutManager(mContext, RecyclerView.HORIZONTAL, false)
 
         view.last_match_recyclerview.adapter = pastAdapter
         view.next_match_recyclerview.adapter = nextAdapter
