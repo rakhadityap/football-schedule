@@ -20,14 +20,14 @@ interface ApiService
     @GET("eventspastleague.php")
     fun getPastEvents(@Query("id") id: String?): Call<MatchResponse>
 
-    @GET("")
-    fun getStandings(@Query("l") id: String, @Query("s") season: String = "1819" ): Call<StandingsResponse>
+    @GET("lookuptable.php")
+    fun getStandings(@Query("l") l: String?): Call<StandingsResponse>
 
     @GET("lookupevent.php")
     fun getEventDetails(@Query("id") eventId: String?): Call<EventDetailResponse>
 
     @GET("lookupteam.php")
-    fun getClub(@Query("id") clubId: String): Call<ClubResponse>
+    fun getClub(@Query("id") clubId: String?): Call<ClubResponse>
 
 
 }

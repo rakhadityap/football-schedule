@@ -19,10 +19,10 @@ data class Match(
     val awayTeam: String,
 
     @SerializedName("intHomeScore")
-    val homeScore: String,
+    val homeScore: String = "0",
 
     @SerializedName("intAwayScore")
-    val awayScore: String,
+    val awayScore: String = "0",
 
     @SerializedName("idHomeTeam")
     val idHomeTeam: String,

@@ -6,43 +6,52 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MatchPresenter(private val view: MatchView) {
-    fun getFutureMatches(id: String) {
-        val call: Call<MatchResponse> = Const.apiService.getSchedule(id)
-        call.enqueue(object : Callback<MatchResponse> {
-            override fun onFailure(call: Call<MatchResponse>, t: Throwable) {
+class MatchPresenter(private val view: MatchView)
+{
+    private lateinit var nextMatchCall: Call<MatchResponse>
+    private lateinit var pastMatchCall: Call<MatchResponse>
+
+    fun getFutureMatches(id: String)
+    {
+        nextMatchCall = Const.apiService.getSchedule(id)
+        nextMatchCall.enqueue(object : Callback<MatchResponse>
+        {
+            override fun onFailure(call: Call<MatchResponse>, t: Throwable)
+            {
                 view.showError(t.localizedMessage)
             }
 
-            override fun onResponse(call: Call<MatchResponse>, response: Response<MatchResponse>) {
-                try {
-                    view.showFutureMatches(response.body()!!.events)
-                } catch (e: Exception) {
-                    view.showError("Empty Match Data")
-                }
+            override fun onResponse(call: Call<MatchResponse>, response: Response<MatchResponse>)
+            {
+                view.showFutureMatches(response.body()?.events)
             }
-
         })
     }
 
-    fun getPastMatches(id: String) {
-        val call: Call<MatchResponse> = Const.apiService.getPastEvents(id)
-        call.enqueue(object : Callback<MatchResponse> {
-            override fun onFailure(call: Call<MatchResponse>, t: Throwable) {
+    fun getPastMatches(id: String)
+    {
+        pastMatchCall = Const.apiService.getPastEvents(id)
+        pastMatchCall.enqueue(object : Callback<MatchResponse>
+        {
+            override fun onFailure(call: Call<MatchResponse>, t: Throwable)
+            {
                 view.showError(t.localizedMessage)
             }
 
             override fun onResponse(
                 call: Call<MatchResponse>,
                 response: Response<MatchResponse>
-            ) {
-                try {
-                    view.showPastMatches(response.body()!!.events)
-                } catch (e: Exception) {
-                    view.showError("Empty Match Data")
-                }
+            )
+            {
+
+                view.showPastMatches(response.body()?.events)
             }
 
         })
+    }
+
+    fun cancelRequest(){
+        nextMatchCall.cancel()
+        pastMatchCall.cancel()
     }
 }

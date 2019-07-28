@@ -37,9 +37,9 @@ class MatchRecyclerviewAdapter(
         fun bind(match: Match, listener: (Match) -> Unit){
             eventDatetime.text = getDate("${match.scheduleDate} ${match.scheduleTime}")
             eventHomeTeam.text = match.homeTeam
-            eventHomeScore.text = match.homeScore
+            eventHomeScore.text = if(!match.homeScore.isNullOrEmpty()) match.homeScore else "-"
             eventAwayTeam.text = match.awayTeam
-            eventAwayScore.text = match.awayScore
+            eventAwayScore.text = if(!match.awayScore.isNullOrEmpty()) match.awayScore else "-"
 
             view.setOnClickListener { listener(match) }
         }

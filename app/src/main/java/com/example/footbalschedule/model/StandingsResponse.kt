@@ -1,3 +1,3 @@
 package com.example.footbalschedule.model
 
-data class StandingsResponse(val table: List<Standings>)
+data class StandingsResponse(val table: List<Standings>?)

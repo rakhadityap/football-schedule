@@ -39,6 +39,7 @@ class LeagueRecyclerviewAdapter(
             Glide.with(view)
                 .load(data.leagueBadge)
                 .into(leagueBadge)
+
             itemView.setOnClickListener { listener(data) }
         }
     }

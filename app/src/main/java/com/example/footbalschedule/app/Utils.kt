@@ -3,6 +3,8 @@ package com.example.footbalschedule.app
 import android.content.Context
 import android.view.View
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearSnapHelper
+import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
@@ -85,4 +87,9 @@ fun getMonth(month: Int) = when (month){
 
 fun showToast(context: Context, message: String){
     Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+}
+
+fun snapRecyclerView(r: RecyclerView){
+    val snapHelper = LinearSnapHelper()
+    snapHelper.attachToRecyclerView(r)
 }

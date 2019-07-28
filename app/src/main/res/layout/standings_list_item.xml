@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/standings_position"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minEms="1"
+        android:textAlignment="center"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/standings_team"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="5"
+        android:lines="1"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/standings_matches"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minEms="2"
+        android:textAlignment="center" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/standings_win"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minEms="2"
+        android:textAlignment="center" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/standings_draw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minEms="2"
+        android:textAlignment="center" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/standings_loss"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minEms="2"
+        android:textAlignment="center" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/standings_goalsfor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minEms="2"
+        android:textAlignment="center" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/standings_goalsagainst"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minEms="2"
+        android:textAlignment="center" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/standings_goalsdiff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minEms="2"
+        android:textAlignment="center" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/standings_point"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minEms="2"
+        android:textAlignment="center" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>
