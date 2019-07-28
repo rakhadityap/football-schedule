@@ -11,6 +11,10 @@
         android:minEms="1"
         android:textAlignment="center"/>
 
+    <View
+        android:layout_width="2dp"
+        android:layout_height="wrap_content"/>
+
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/standings_team"
         android:layout_width="0dp"
