@@ -9,10 +9,8 @@ import com.example.footbalschedule.app.showToast
 import com.example.footbalschedule.model.League
 import kotlinx.android.synthetic.main.activity_league_detail.*
 
-class LeagueDetailActivity : AppCompatActivity(), LeagueDetailView
-{
-    override fun onCreate(savedInstanceState: Bundle?)
-    {
+class LeagueDetailActivity : AppCompatActivity(), LeagueDetailView {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_league_detail)
         setSupportActionBar(league_detail_toolbar)
@@ -28,26 +26,25 @@ class LeagueDetailActivity : AppCompatActivity(), LeagueDetailView
         presenter.getLeagueDetail(leagueId)
     }
 
-    override fun showLeagueDetail(league: League)
-    {
-        Glide.with(this)
+    override fun showLeagueDetail(league: League?) {
+        league?.let { league ->
+            Glide.with(this)
                 .load(league.strLogo)
                 .into(league_detail_banner)
-        Glide.with(this)
+            Glide.with(this)
                 .load(league.strBadge)
                 .into(league_detail_badge)
-        league_detail_name.text = league.strLeague
-        league_detail_country.text = league.strCountry
+            league_detail_name.text = league.strLeague
+            league_detail_country.text = league.strCountry
+        }
     }
 
-    override fun showError(message: String)
-    {
+    override fun showError(message: String) {
         showToast(this, message)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean
-    {
-        when(item?.itemId){
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item?.itemId) {
             android.R.id.home -> finish()
         }
         return true

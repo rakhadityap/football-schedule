@@ -19,7 +19,7 @@ class LeagueDetailPresenter(private val view: LeagueDetailView)
 
             override fun onResponse(call: Call<LeagueDetailResponse>, response: Response<LeagueDetailResponse>)
             {
-                view.showLeagueDetail(response.body()!!.leagues[0])
+                view.showLeagueDetail(response.body()?.leagues?.get(0))
             }
 
         })

@@ -11,5 +11,6 @@ data class Team(
     val strStadiumLocation: String,
     val strCountry: String,
     val strTeamBadge: String,
-    val strTeamJersey: String
+    val strTeamJersey: String,
+    val strTeamBanner: String
 )

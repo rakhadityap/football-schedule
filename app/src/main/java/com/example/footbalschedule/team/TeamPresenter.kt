@@ -11,7 +11,7 @@ class TeamPresenter(val view: TeamView)
     private lateinit var callTeam: Call<TeamResponse>
 
     fun getTeams(id: String){
-        callTeam = apiService.getClubList(id)
+        callTeam = apiService.getTeamList(id)
         callTeam.enqueue(object: Callback<TeamResponse>{
             override fun onFailure(call: Call<TeamResponse>, t: Throwable)
             {

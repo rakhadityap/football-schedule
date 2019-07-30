@@ -11,11 +11,11 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".playerdetail.PlayerDetailActivity">
-        </activity>
+        <activity android:name=".playerdetail.PlayerDetailActivity"/>
         <activity android:name=".favorite.FavoriteActivity"/>
         <activity android:name=".eventdetail.EventDetailActivity"/>
-        <activity android:name=".teamdetail.TeamDetailActivity"/>
+        <activity android:name=".teamdetail.TeamDetailActivity"
+                  android:theme="@style/AppTheme.NoActionBar"/>
         <activity
                 android:name=".leaguedetail.LeagueDetailActivity"
                 android:theme="@style/AppTheme.NoActionBar"/>

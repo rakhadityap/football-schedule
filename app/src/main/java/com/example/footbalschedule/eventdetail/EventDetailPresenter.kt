@@ -35,8 +35,8 @@ class EventDetailPresenter(private val view: EventDetailView)
 
     fun getClubBadge(homeId: String, awayId: String)
     {
-        homeCall = apiService?.getClub(homeId)
-        awayCall = apiService?.getClub(awayId)
+        homeCall = apiService?.getTeam(homeId)
+        awayCall = apiService?.getTeam(awayId)
 
         var homeURL = ""
         var awayURL = ""
