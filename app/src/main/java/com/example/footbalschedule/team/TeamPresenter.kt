@@ -1,4 +1,4 @@
-package com.example.footbalschedule.teaminfo
+package com.example.footbalschedule.team
 
 import com.example.footbalschedule.app.Const.apiService
 import com.example.footbalschedule.model.TeamResponse

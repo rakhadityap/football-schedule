@@ -5,14 +5,14 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.example.footbalschedule.match.MatchFragment
 import com.example.footbalschedule.standings.StandingsFragment
-import com.example.footbalschedule.teaminfo.TeamInfoFragment
+import com.example.footbalschedule.team.TeamFragment
 
 class ViewPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
     val title = listOf("Match", "Standings", "Team")
     val pages: List<Fragment> = listOf(
         MatchFragment(),
         StandingsFragment(),
-        TeamInfoFragment()
+        TeamFragment()
     )
 
     override fun getItem(position: Int): Fragment = pages[position]

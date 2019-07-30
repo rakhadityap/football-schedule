@@ -1,4 +1,4 @@
-package com.example.footbalschedule.teaminfo
+package com.example.footbalschedule.team
 
 import android.content.Context
 import android.view.LayoutInflater

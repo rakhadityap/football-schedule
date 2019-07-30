@@ -1,4 +1,4 @@
-package com.example.footbalschedule.teaminfo
+package com.example.footbalschedule.team
 
 import com.example.footbalschedule.app.BaseView
 import com.example.footbalschedule.model.Team
