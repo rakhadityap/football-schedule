@@ -32,5 +32,8 @@ interface ApiService
     @GET("lookupteam.php")
     fun getTeam(@Query("id") clubId: String?): Call<TeamResponse>
 
+    @GET("lookup_all_players.php")
+    fun getPlayerList(@Query("id") id: String): Call<PlayerListResponse>
+
 
 }

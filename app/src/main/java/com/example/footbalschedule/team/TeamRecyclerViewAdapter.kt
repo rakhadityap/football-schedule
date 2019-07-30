@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.footbalschedule.R
 import com.example.footbalschedule.model.Team
-import kotlinx.android.synthetic.main.team_list_item.view.*
+import kotlinx.android.synthetic.main.generic_list_item.view.*
 
 class TeamRecyclerViewAdapter(
         val datas: List<Team>,
@@ -17,9 +17,9 @@ class TeamRecyclerViewAdapter(
 {
     class ViewHolder(val view: View) : RecyclerView.ViewHolder(view)
     {
-        val teamName = view.team_list_name
-        val teamLocation = view.team_list_location
-        val teamBadge = view.team_list_badge
+        val teamName = view.generic_list_title
+        val teamLocation = view.generic_list_subtitle
+        val teamBadge = view.generic_list_badge
 
         fun bind(data: Team, listener: (Team) -> Unit)
         {
@@ -33,7 +33,7 @@ class TeamRecyclerViewAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
-            ViewHolder(LayoutInflater.from(mContext).inflate(R.layout.team_list_item, parent, false))
+            ViewHolder(LayoutInflater.from(mContext).inflate(R.layout.generic_list_item, parent, false))
 
     override fun getItemCount(): Int = datas.size
 

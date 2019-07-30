@@ -10,7 +10,7 @@
         android:layout_margin="8dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/team_list_badge"
+            android:id="@+id/generic_list_badge"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_margin="8dp" />
@@ -18,17 +18,18 @@
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:orientation="vertical">
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/team_list_name"
+                android:id="@+id/generic_list_title"
                 style="@android:style/TextAppearance.Material.Headline"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/team_list_location"
+                android:id="@+id/generic_list_subtitle"
+                style="@android:style/TextAppearance.Material.SearchResult.Subtitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </androidx.appcompat.widget.LinearLayoutCompat>
