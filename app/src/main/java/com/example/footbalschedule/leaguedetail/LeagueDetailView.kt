@@ -1,9 +1,9 @@
 package com.example.footbalschedule.leaguedetail
 
 import com.example.footbalschedule.app.BaseView
-import com.example.footbalschedule.model.LeagueDetail
+import com.example.footbalschedule.model.League
 
 interface LeagueDetailView: BaseView
 {
-    fun showLeagueDetail(leagueDetail: LeagueDetail)
+    fun showLeagueDetail(league: League)
 }

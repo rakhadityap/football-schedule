@@ -11,9 +11,13 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.footbalschedule.R
+import com.example.footbalschedule.app.done
+import com.example.footbalschedule.app.refresh
 import com.example.footbalschedule.app.showToast
 import com.example.footbalschedule.model.Standings
+import kotlinx.android.synthetic.main.fragment_standings.*
 import kotlinx.android.synthetic.main.fragment_standings.view.*
+import kotlinx.android.synthetic.main.fragment_standings.view.standings_refresh
 
 /**
  * A simple [Fragment] subclass.
@@ -36,11 +40,17 @@ class StandingsFragment : Fragment(), StandingsView
         mContext = activity?.applicationContext
         adapter = StandingsRecyclerViewAdapter(datas, mContext!!){
         }
-        val leagueId: String = activity?.intent?.getStringExtra("leagueId") ?: "0000"
+        val leagueId: String = activity?.intent?.getStringExtra("idLeague") ?: "0000"
         Log.d("League ID", leagueId)
 
         view.standings_recyclerview.layoutManager = LinearLayoutManager(mContext, RecyclerView.VERTICAL, false)
         view.standings_recyclerview.adapter = adapter
+
+        view.standings_refresh.setOnRefreshListener {
+            presenter.getStandings(leagueId)
+        }
+
+        view.standings_refresh.refresh()
 
         presenter.getStandings(leagueId)
 
@@ -55,6 +65,7 @@ class StandingsFragment : Fragment(), StandingsView
             datas.addAll(it)
             adapter.notifyDataSetChanged()
         }
+        this.view?.standings_refresh?.done()
     }
 
     override fun showError(message: String)

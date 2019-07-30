@@ -1,7 +1,7 @@
 package com.example.footbalschedule.eventdetail
 
 import com.example.footbalschedule.app.Const.apiService
-import com.example.footbalschedule.model.ClubResponse
+import com.example.footbalschedule.model.TeamResponse
 import com.example.footbalschedule.model.EventDetailResponse
 import retrofit2.Call
 import retrofit2.Callback
@@ -10,8 +10,8 @@ import retrofit2.Response
 class EventDetailPresenter(private val view: EventDetailView)
 {
     private lateinit var detailCall: Call<EventDetailResponse>
-    private var homeCall: Call<ClubResponse>? = null
-    private var awayCall: Call<ClubResponse>? = null
+    private var homeCall: Call<TeamResponse>? = null
+    private var awayCall: Call<TeamResponse>? = null
 
     var ready = 0
 
@@ -41,15 +41,15 @@ class EventDetailPresenter(private val view: EventDetailView)
         var homeURL = ""
         var awayURL = ""
 
-        homeCall?.enqueue(object : Callback<ClubResponse>
+        homeCall?.enqueue(object : Callback<TeamResponse>
         {
-            override fun onResponse(call: Call<ClubResponse>, response: Response<ClubResponse>)
+            override fun onResponse(call: Call<TeamResponse>, response: Response<TeamResponse>)
             {
                 homeURL = response.body()?.teams?.get(0)?.strTeamBadge ?: ""
 
-                awayCall?.enqueue(object : Callback<ClubResponse>
+                awayCall?.enqueue(object : Callback<TeamResponse>
                 {
-                    override fun onResponse(call: Call<ClubResponse>, response: Response<ClubResponse>)
+                    override fun onResponse(call: Call<TeamResponse>, response: Response<TeamResponse>)
                     {
                         awayURL = response.body()?.teams?.get(0)?.strTeamBadge ?: ""
 
@@ -57,7 +57,7 @@ class EventDetailPresenter(private val view: EventDetailView)
 
                     }
 
-                    override fun onFailure(call: Call<ClubResponse>, t: Throwable)
+                    override fun onFailure(call: Call<TeamResponse>, t: Throwable)
                     {
                         view.showError(t.localizedMessage)
                     }
@@ -66,7 +66,7 @@ class EventDetailPresenter(private val view: EventDetailView)
 
             }
 
-            override fun onFailure(call: Call<ClubResponse>, t: Throwable)
+            override fun onFailure(call: Call<TeamResponse>, t: Throwable)
             {
                 view.showError(t.localizedMessage)
             }

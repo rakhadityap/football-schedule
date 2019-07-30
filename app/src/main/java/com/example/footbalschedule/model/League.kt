@@ -1,19 +1,15 @@
 package com.example.footbalschedule.model
 
-import com.google.gson.annotations.SerializedName
-
 data class League(
-        @SerializedName("idLeague")
-        val leagueId: String,
-
-        @SerializedName("strLeague")
-        val leagueName: String,
-
-        @SerializedName("strBadge")
-        val leagueBadge: String)
+        val idLeague: String,
+        val strLeague: String,
+        val strBadge: String,
+        val strLogo: String,
+        val strCountry: String
+)
 {
     override fun toString(): String
     {
-        return leagueName
+        return strLeague
     }
 }

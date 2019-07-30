@@ -25,7 +25,7 @@ class LeagueActivity : AppCompatActivity(), LeagueView
     {
         adapter = LeagueRecyclerviewAdapter(leagueList, this) { league ->
             val intent = Intent(this, LeagueDetailActivity::class.java).apply {
-                putExtra("leagueId", league.leagueId)
+                putExtra("idLeague", league.idLeague)
             }
             startActivity(intent)
         }

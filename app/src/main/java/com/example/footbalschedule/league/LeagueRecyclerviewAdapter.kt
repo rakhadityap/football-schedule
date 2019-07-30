@@ -22,7 +22,7 @@ class LeagueRecyclerviewAdapter(
         ViewHolder(LayoutInflater.from(context).inflate(R.layout.league_list_item, parent, false))
 
 
-    override fun getItemId(position: Int): Long = datas[position].leagueId.toLongOrNull() ?: 0
+    override fun getItemId(position: Int): Long = datas[position].idLeague.toLongOrNull() ?: 0
 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(datas[position], listener)
@@ -35,9 +35,9 @@ class LeagueRecyclerviewAdapter(
 
         fun bind(data: League, listener: (League) -> Unit)
         {
-            leagueName.text = data.leagueName
+            leagueName.text = data.strLeague
             Glide.with(view)
-                .load(data.leagueBadge)
+                .load(data.strBadge)
                 .into(leagueBadge)
 
             itemView.setOnClickListener { listener(data) }

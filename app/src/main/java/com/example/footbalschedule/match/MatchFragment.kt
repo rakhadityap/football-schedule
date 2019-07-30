@@ -38,7 +38,7 @@ class MatchFragment : Fragment(), MatchView
     {
         val view = inflater.inflate(R.layout.fragment_match, container, false)
         val presenter = MatchPresenter(this)
-        val leagueId: String = activity?.intent?.getStringExtra("leagueId") ?: "0000"
+        val leagueId: String = activity?.intent?.getStringExtra("idLeague") ?: "0000"
 
         mContext = activity!!.applicationContext
 

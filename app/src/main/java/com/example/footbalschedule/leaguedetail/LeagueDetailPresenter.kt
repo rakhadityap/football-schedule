@@ -14,7 +14,7 @@ class LeagueDetailPresenter(private val view: LeagueDetailView)
         {
             override fun onFailure(call: Call<LeagueDetailResponse>, t: Throwable)
             {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                view.showError(t.localizedMessage)
             }
 
             override fun onResponse(call: Call<LeagueDetailResponse>, response: Response<LeagueDetailResponse>)

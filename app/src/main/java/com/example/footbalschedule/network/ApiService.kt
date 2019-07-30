@@ -26,8 +26,11 @@ interface ApiService
     @GET("lookupevent.php")
     fun getEventDetails(@Query("id") eventId: String?): Call<EventDetailResponse>
 
+    @GET("lookup_all_teams.php")
+    fun getClubList(@Query("id") id: String?): Call<TeamResponse>
+
     @GET("lookupteam.php")
-    fun getClub(@Query("id") clubId: String?): Call<ClubResponse>
+    fun getClub(@Query("id") clubId: String?): Call<TeamResponse>
 
 
 }
