@@ -51,8 +51,8 @@
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/league_detail_badge"
-                    android:layout_width="72dp"
-                    android:layout_height="72dp"
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
                     android:layout_marginTop="8dp"
                     app:civ_circle_background_color="@android:color/white"/>
 

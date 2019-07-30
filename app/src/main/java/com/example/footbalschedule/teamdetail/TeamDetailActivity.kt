@@ -1,6 +1,7 @@
 package com.example.footbalschedule.teamdetail
 
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.footbalschedule.R
@@ -14,6 +15,7 @@ class TeamDetailActivity : AppCompatActivity(), TeamDetailView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_team_detail)
         setSupportActionBar(team_detail_toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = "Team Detail"
 
         team_detail_pager.adapter = ViewPagerAdapter(supportFragmentManager)
@@ -42,5 +44,12 @@ class TeamDetailActivity : AppCompatActivity(), TeamDetailView {
 
     override fun showError(message: String) {
         showToast(this, message)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when(item?.itemId){
+            android.R.id.home -> finish()
+        }
+        return true
     }
 }

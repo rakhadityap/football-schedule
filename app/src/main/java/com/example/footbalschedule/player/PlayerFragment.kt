@@ -31,7 +31,7 @@ class PlayerFragment : Fragment(), PlayerView
     private val adapter: PlayerRecyclerViewAdapter by lazy {
         PlayerRecyclerViewAdapter(players, mContext){
             val intent = Intent(mContext, PlayerDetailActivity::class.java).apply {
-                putExtra("idTeam", it.idPlayer)
+                putExtra("idPlayer", it.idPlayer)
             }
             startActivity(intent)
         }

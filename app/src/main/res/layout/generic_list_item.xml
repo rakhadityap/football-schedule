@@ -25,7 +25,9 @@
                 android:id="@+id/generic_list_title"
                 style="@android:style/TextAppearance.Material.Headline"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:lines="1"
+                android:ellipsize="end"/>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/generic_list_subtitle"
