@@ -38,5 +38,9 @@ interface ApiService
     @GET("lookupplayer.php")
     fun getPlayer(@Query("id") id: String): Call<PlayerResponse>
 
+    @GET("searchevents.php")
+    fun searchMatch(@Query("e") e: String): Call<MatchSearchResponse>
 
+    @GET("searchteams.php?")
+    fun searchTeams(@Query("t") t: String): Call<TeamResponse>
 }

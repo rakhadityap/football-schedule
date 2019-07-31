@@ -1,12 +1,16 @@
 package com.example.footbalschedule.leaguedetail
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.viewpager.widget.ViewPager
 import com.bumptech.glide.Glide
 import com.example.footbalschedule.R
 import com.example.footbalschedule.app.showToast
 import com.example.footbalschedule.model.League
+import com.example.footbalschedule.search.SearchActivity
 import kotlinx.android.synthetic.main.activity_league_detail.*
 
 class LeagueDetailActivity : AppCompatActivity(), LeagueDetailView {
@@ -29,7 +33,7 @@ class LeagueDetailActivity : AppCompatActivity(), LeagueDetailView {
     override fun showLeagueDetail(league: League?) {
         league?.let { league ->
             Glide.with(this)
-                .load(league.strLogo)
+                .load(league.strFanart1)
                 .into(league_detail_banner)
             Glide.with(this)
                 .load(league.strBadge)
@@ -43,9 +47,21 @@ class LeagueDetailActivity : AppCompatActivity(), LeagueDetailView {
         showToast(this, message)
     }
 
+    fun showMenu(a: Boolean) {
+        league_detail_toolbar.menu?.getItem(R.id.search_menu_id)?.setVisible(a)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.search_menu, menu)
+        return true
+    }
+
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             android.R.id.home -> finish()
+            R.id.search_menu_id -> startActivity(Intent(this, SearchActivity::class.java).apply {
+                putExtra("source", league_detail_pager.currentItem)
+            })
         }
         return true
     }
