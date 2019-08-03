@@ -1,46 +1,37 @@
 package com.example.footbalschedule.model
 
-import com.google.gson.annotations.SerializedName
+import androidx.room.*
 
+@Entity (tableName = "tb_match")
 data class Match(
-    @SerializedName("idEvent")
-    val scheduleId: String,
-
-    @SerializedName("strDate")
-    val scheduleDate: String,
-
-    @SerializedName("strTime")
-    val scheduleTime: String,
-
-    @SerializedName("strHomeTeam")
-    val homeTeam: String,
-
-    @SerializedName("strAwayTeam")
-    val awayTeam: String,
-
-    @SerializedName("intHomeScore")
-    val homeScore: String = "0",
-
-    @SerializedName("intAwayScore")
-    val awayScore: String = "0",
-
-    @SerializedName("idHomeTeam")
+    @PrimaryKey
+    val idEvent: String,
+    val strDate: String,
+    val strTime: String,
+    val strHomeTeam: String,
+    val strAwayTeam: String,
+    val intHomeScore: String = "0",
+    val intAwayScore: String = "0",
     val idHomeTeam: String,
-
-    @SerializedName("idAwayTeam")
     val idAwayTeam: String
-)
-{
-    companion object
-    {
-        const val TABLE_FAVORITE: String = "TABLE_FAVORITE"
-        const val ID: String = "ID_"
-        const val scheduleId: String = "SCHEDULE_ID"
-        const val scheduleDate: String = "SCHEDULE_DATE"
-        const val scheduleTime: String = "SCHEDULE_TIME"
-        const val homeTeam: String = "HOME_TEAM"
-        const val awayTeam: String = "AWAY_TEAM"
-        const val homeScore: String = "HOME_SCORE"
-        const val awayScore: String = "AWAY_SCORE"
+){
+    @Dao
+    interface MatchDao{
+        @Query("SELECT * FROM tb_match")
+        suspend fun getAll(): List<Match>
+
+        @Query("SELECT * FROM tb_match WHERE idEvent= :idEvent")
+        suspend fun getDetail(idEvent: String): Match
+
+        @Query("SELECT count(*) FROM tb_match WHERE idEvent= :idEvent")
+        suspend fun checkMatch(idEvent: String): Int
+
+        @Insert
+        suspend fun insertMatch(match: Match)
+
+        @Delete
+        suspend fun removeMatch(match: Match)
     }
 }
+
+

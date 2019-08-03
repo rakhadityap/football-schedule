@@ -21,7 +21,7 @@ class MatchRecyclerviewAdapter(
 
     override fun getItemCount(): Int = matches.size
 
-    override fun getItemId(position: Int): Long = matches[position].scheduleId.toLong()
+    override fun getItemId(position: Int): Long = matches[position].idEvent.toLong()
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int)= holder.bind(matches[position], listener)
 
@@ -35,11 +35,11 @@ class MatchRecyclerviewAdapter(
 
 
         fun bind(match: Match, listener: (Match) -> Unit){
-            eventDatetime.text = getDate("${match.scheduleDate} ${match.scheduleTime}")
-            eventHomeTeam.text = match.homeTeam
-            eventHomeScore.text = if(!match.homeScore.isNullOrEmpty()) match.homeScore else "-"
-            eventAwayTeam.text = match.awayTeam
-            eventAwayScore.text = if(!match.awayScore.isNullOrEmpty()) match.awayScore else "-"
+            eventDatetime.text = getDate("${match.strDate} ${match.strTime}")
+            eventHomeTeam.text = match.strHomeTeam
+            eventHomeScore.text = if(!match.intHomeScore.isNullOrEmpty()) match.intHomeScore else "-"
+            eventAwayTeam.text = match.strAwayTeam
+            eventAwayScore.text = if(!match.intAwayScore.isNullOrEmpty()) match.intAwayScore else "-"
 
             view.setOnClickListener { listener(match) }
         }

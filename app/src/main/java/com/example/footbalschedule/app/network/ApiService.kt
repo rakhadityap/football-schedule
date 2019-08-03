@@ -1,4 +1,4 @@
-package com.example.footbalschedule.network
+package com.example.footbalschedule.app.network
 
 
 import com.example.footbalschedule.model.*

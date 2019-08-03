@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.viewpager.widget.ViewPager
 import com.bumptech.glide.Glide
 import com.example.footbalschedule.R
 import com.example.footbalschedule.app.showToast
@@ -31,15 +30,15 @@ class LeagueDetailActivity : AppCompatActivity(), LeagueDetailView {
     }
 
     override fun showLeagueDetail(league: League?) {
-        league?.let { league ->
+        league?.let {
             Glide.with(this)
-                .load(league.strFanart1)
+                .load(it.strFanart1)
                 .into(league_detail_banner)
             Glide.with(this)
-                .load(league.strBadge)
+                .load(it.strBadge)
                 .into(league_detail_badge)
-            league_detail_name.text = league.strLeague
-            league_detail_country.text = league.strCountry
+            league_detail_name.text = it.strLeague
+            league_detail_country.text = it.strCountry
         }
     }
 

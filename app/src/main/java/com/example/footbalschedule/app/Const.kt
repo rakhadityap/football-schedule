@@ -1,7 +1,7 @@
 package com.example.footbalschedule.app
 
-import com.example.footbalschedule.network.ApiClient
-import com.example.footbalschedule.network.ApiService
+import com.example.footbalschedule.app.network.ApiClient
+import com.example.footbalschedule.app.network.ApiService
 
 object Const
 {

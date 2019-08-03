@@ -1,10 +1,10 @@
 package com.example.footbalschedule.search
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.footbalschedule.R
@@ -30,7 +30,7 @@ class SearchActivity : AppCompatActivity(), SearchView {
             0, 1 -> {
                 MatchRecyclerviewAdapter(matchList, this) {
                     startActivity(Intent(this, EventDetailActivity::class.java).apply {
-                        putExtra("eventId", it.scheduleId)
+                        putExtra("eventId", it.idEvent)
                     })
                 }
             }
@@ -89,23 +89,29 @@ class SearchActivity : AppCompatActivity(), SearchView {
 
         searchView.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                when (fragmentSource) {
-                    0, 1 -> presenter.searchMatch(query ?: "")
-                    else -> presenter.searchTeam(query ?: "")
-                }
-
-                if(query == ""){
+                if (query == "") {
                     matchList.clear()
                     teamList.clear()
                     adapter.notifyDataSetChanged()
+                } else {
+                    when (fragmentSource) {
+                        0, 1 -> presenter.searchMatch(query ?: "")
+                        else -> presenter.searchTeam(query ?: "")
+                    }
                 }
                 return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                when (fragmentSource) {
-                    0, 1 -> presenter.searchMatch(newText ?: "")
-                    else -> presenter.searchTeam(newText ?: "")
+                if (newText == "") {
+                    matchList.clear()
+                    teamList.clear()
+                    adapter.notifyDataSetChanged()
+                } else {
+                    when (fragmentSource) {
+                        0, 1 -> presenter.searchMatch(newText ?: "")
+                        else -> presenter.searchTeam(newText ?: "")
+                    }
                 }
                 return true
             }

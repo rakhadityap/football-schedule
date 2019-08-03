@@ -1,4 +1,4 @@
-package com.example.footbalschedule.network
+package com.example.footbalschedule.app.network
 
 import com.example.footbalschedule.app.Const.BASE_URL
 import com.example.footbalschedule.app.Const.REQUEST_TIMEOUT

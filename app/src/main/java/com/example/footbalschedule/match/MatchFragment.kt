@@ -44,14 +44,14 @@ class MatchFragment : Fragment(), MatchView
 
         pastAdapter = MatchRecyclerviewAdapter(pastMatches, mContext) { match ->
             val intent = Intent(mContext, EventDetailActivity::class.java).apply {
-                putExtra("eventId", match.scheduleId)
+                putExtra("eventId", match.idEvent)
             }
             startActivity(intent)
         }
 
         nextAdapter = MatchRecyclerviewAdapter(nextMatches, mContext) { match ->
             val intent = Intent(mContext, EventDetailActivity::class.java).apply {
-                putExtra("eventId", match.scheduleId)
+                putExtra("eventId", match.idEvent)
             }
             startActivity(intent)
         }
