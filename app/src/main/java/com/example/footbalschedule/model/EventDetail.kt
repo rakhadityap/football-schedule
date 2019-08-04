@@ -1,7 +1,8 @@
 package com.example.footbalschedule.model
 
+
 data class EventDetail(
-    val idEvent: String?,
+    val idEvent: String,
     val strDate: String?,
     val strTime: String?,
     val strHomeTeam: String?,

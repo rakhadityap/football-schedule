@@ -1,7 +1,13 @@
 package com.example.footbalschedule.teamdetail
 
+import android.content.Context
 import com.example.footbalschedule.app.Const.apiService
+import com.example.footbalschedule.app.room.FootballDatabase
+import com.example.footbalschedule.model.Team
 import com.example.footbalschedule.model.TeamResponse
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -21,5 +27,29 @@ class TeamDetailPresenter(private val view: TeamDetailView) {
             }
 
         })
+    }
+
+    fun addToFavorite(context: Context, team: Team?){
+        team?.let {
+            GlobalScope.launch(Dispatchers.Main){
+                FootballDatabase(context).teamDao().insertTeam(it)
+            }
+        }
+    }
+
+    fun removeFromFavorite(context: Context, team: Team?){
+        team?.let {
+            GlobalScope.launch(Dispatchers.Main){
+                FootballDatabase(context).teamDao().removeTeam(it)
+            }
+        }
+    }
+
+    fun checkFavorite(context: Context, idTeam: String){
+        GlobalScope.launch(Dispatchers.Main){
+            val teamCount = FootballDatabase(context).teamDao().checkTeam(idTeam)
+            if(teamCount > 0) view.setFavoriteState(true)
+            else view.setFavoriteState(false)
+        }
     }
 }

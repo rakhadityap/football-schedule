@@ -31,6 +31,9 @@ data class Match(
 
         @Delete
         suspend fun removeMatch(match: Match)
+
+        @Query("DELETE FROM tb_match WHERE idEvent = :idEvent")
+        suspend fun removeMatchById(idEvent: String)
     }
 }
 

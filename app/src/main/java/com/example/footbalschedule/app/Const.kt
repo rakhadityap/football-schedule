@@ -9,4 +9,5 @@ object Const
     const val REQUEST_TIMEOUT = 10
 
     val apiService by lazy { ApiClient.retrofit.create(ApiService::class.java) }
+
 }

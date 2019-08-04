@@ -7,4 +7,5 @@ interface EventDetailView: BaseView
 {
     fun showDetail(eventDetail: EventDetail)
     fun showBadges(homeURL: String, awayURL: String)
+    fun setFavoriteState(inFavorite: Boolean)
 }

@@ -2,6 +2,7 @@ package com.example.footbalschedule.favorite
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -34,7 +35,7 @@ class FavoriteActivity : AppCompatActivity(), FavoriteView {
     val matchAdapter: MatchRecyclerviewAdapter by lazy {
         MatchRecyclerviewAdapter(matchList, this) {
             val intent = Intent(this, EventDetailActivity::class.java).apply {
-                putExtra("idEvent", it.idEvent)
+                putExtra("eventId", it.idEvent)
             }
             startActivity(intent)
         }
@@ -45,6 +46,7 @@ class FavoriteActivity : AppCompatActivity(), FavoriteView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_favorite)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         favorite_recyclerview.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
 
@@ -52,13 +54,17 @@ class FavoriteActivity : AppCompatActivity(), FavoriteView {
             when (it.itemId) {
                 R.id.favorite_event_menu -> {
                     menuPosition = 0
+                    presenter.getFavoriteMatch(this)
                 }
                 R.id.favorite_team_menu -> {
                     menuPosition = 1
+                    presenter.getFavoriteTeam(this)
                 }
             }
             true
         }
+
+        presenter.getFavoriteMatch(this)
     }
 
     override fun showFavorite(datas: List<Any>?) {
@@ -80,5 +86,20 @@ class FavoriteActivity : AppCompatActivity(), FavoriteView {
 
     override fun showError(message: String) {
         showToast(this, message)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        when(menuPosition){
+            0 -> presenter.getFavoriteMatch(this)
+            1 -> presenter.getFavoriteTeam(this)
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when(item?.itemId){
+            android.R.id.home -> finish()
+        }
+        return true
     }
 }
