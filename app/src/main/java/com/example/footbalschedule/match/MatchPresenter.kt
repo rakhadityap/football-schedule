@@ -1,20 +1,20 @@
 package com.example.footbalschedule.match
 
-import com.example.footbalschedule.app.Const
+import com.example.footbalschedule.app.network.ApiService
 import com.example.footbalschedule.model.MatchResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MatchPresenter(private val view: MatchView)
+class MatchPresenter(private val view: MatchView, private val apiService: ApiService)
 {
-    private lateinit var nextMatchCall: Call<MatchResponse>
-    private lateinit var pastMatchCall: Call<MatchResponse>
+    private var nextMatchCall: Call<MatchResponse>? = null
+    private var pastMatchCall: Call<MatchResponse>? = null
 
     fun getFutureMatches(id: String)
     {
-        nextMatchCall = Const.apiService.getSchedule(id)
-        nextMatchCall.enqueue(object : Callback<MatchResponse>
+        nextMatchCall = apiService.getSchedule(id)
+        nextMatchCall?.enqueue(object : Callback<MatchResponse>
         {
             override fun onFailure(call: Call<MatchResponse>, t: Throwable)
             {
@@ -30,8 +30,8 @@ class MatchPresenter(private val view: MatchView)
 
     fun getPastMatches(id: String)
     {
-        pastMatchCall = Const.apiService.getPastEvents(id)
-        pastMatchCall.enqueue(object : Callback<MatchResponse>
+        pastMatchCall = apiService.getPastEvents(id)
+        pastMatchCall?.enqueue(object : Callback<MatchResponse>
         {
             override fun onFailure(call: Call<MatchResponse>, t: Throwable)
             {
@@ -51,7 +51,7 @@ class MatchPresenter(private val view: MatchView)
     }
 
     fun cancelRequest(){
-        nextMatchCall.cancel()
-        pastMatchCall.cancel()
+        nextMatchCall?.cancel()
+        pastMatchCall?.cancel()
     }
 }

@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.footbalschedule.R
 import com.example.footbalschedule.app.*
+import com.example.footbalschedule.app.Const.apiService
 import com.example.footbalschedule.eventdetail.EventDetailActivity
 import com.example.footbalschedule.model.Match
 import kotlinx.android.synthetic.main.fragment_match.*
@@ -37,7 +38,7 @@ class MatchFragment : Fragment(), MatchView
     ): View?
     {
         val view = inflater.inflate(R.layout.fragment_match, container, false)
-        val presenter = MatchPresenter(this)
+        val presenter = MatchPresenter(this, apiService)
         val leagueId: String = activity?.intent?.getStringExtra("idLeague") ?: "0000"
 
         mContext = activity!!.applicationContext
