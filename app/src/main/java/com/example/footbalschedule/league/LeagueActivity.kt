@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.footbalschedule.R
+import com.example.footbalschedule.app.Const.apiService
 import com.example.footbalschedule.app.done
 import com.example.footbalschedule.app.refresh
 import com.example.footbalschedule.app.showToast
@@ -21,7 +22,7 @@ class LeagueActivity : AppCompatActivity(), LeagueView
     val adapter: LeagueRecyclerviewAdapter
 
     val leagueList: MutableList<League> = mutableListOf()
-    val leaguePresenter = LeaguePresenter(this)
+    val leaguePresenter = LeaguePresenter(this, apiService)
 
     init
     {
@@ -48,11 +49,13 @@ class LeagueActivity : AppCompatActivity(), LeagueView
         leaguePresenter.getLeagues()
     }
 
-    override fun showLeague(leagues: List<League>)
+    override fun showLeague(leagues: List<League>?)
     {
-        leagueList.clear()
-        leagueList.addAll(leagues)
-        adapter.notifyDataSetChanged()
+        leagues?.let{
+            leagueList.clear()
+            leagueList.addAll(it)
+            adapter.notifyDataSetChanged()
+        }
         league_list_refreshview.done()
     }
 

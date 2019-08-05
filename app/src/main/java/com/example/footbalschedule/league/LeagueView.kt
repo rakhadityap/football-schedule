@@ -5,5 +5,5 @@ import com.example.footbalschedule.model.League
 
 interface LeagueView: BaseView
 {
-    fun showLeague(leagues: List<League>)
+    fun showLeague(leagues: List<League>?)
 }
