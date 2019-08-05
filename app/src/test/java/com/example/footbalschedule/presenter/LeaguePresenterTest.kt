@@ -15,20 +15,15 @@ class LeaguePresenterTest {
 
     private lateinit var presenterTest: LeaguePresenter
 
-    @Mock
-    private lateinit var view: LeagueView
+    @Mock private lateinit var view: LeagueView
 
-    @Mock
-    private lateinit var apiService: ApiService
+    @Mock private lateinit var apiService: ApiService
 
-    @Mock
-    private lateinit var call: Call<LeagueResponse>
+    @Mock private lateinit var call: Call<LeagueResponse>
 
-    @Mock
-    private lateinit var res: Response<LeagueResponse>
+    @Mock private lateinit var res: Response<LeagueResponse>
 
-    @Captor
-    private lateinit var argumentCaptor: ArgumentCaptor<Callback<LeagueResponse>>
+    @Captor private lateinit var argumentCaptor: ArgumentCaptor<Callback<LeagueResponse>>
 
     @Before
     fun setUp(){
@@ -38,7 +33,7 @@ class LeaguePresenterTest {
     }
 
     @Test
-    fun testGeLeagues(){
+    fun testGetLeagues(){
         Mockito.`when`(apiService.getLeagueList()).thenReturn(call)
 
         presenterTest.getLeagues()

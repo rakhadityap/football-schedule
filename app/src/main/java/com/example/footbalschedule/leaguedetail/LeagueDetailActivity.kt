@@ -7,6 +7,7 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.footbalschedule.R
+import com.example.footbalschedule.app.Const.apiService
 import com.example.footbalschedule.app.showToast
 import com.example.footbalschedule.model.League
 import com.example.footbalschedule.search.SearchActivity
@@ -25,7 +26,7 @@ class LeagueDetailActivity : AppCompatActivity(), LeagueDetailView {
 
         val leagueId = intent.getStringExtra("idLeague")
 
-        val presenter = LeagueDetailPresenter(this)
+        val presenter = LeagueDetailPresenter(this, apiService)
         presenter.getLeagueDetail(leagueId)
     }
 
@@ -44,10 +45,6 @@ class LeagueDetailActivity : AppCompatActivity(), LeagueDetailView {
 
     override fun showError(message: String) {
         showToast(this, message)
-    }
-
-    fun showMenu(a: Boolean) {
-        league_detail_toolbar.menu?.getItem(R.id.search_menu_id)?.setVisible(a)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
