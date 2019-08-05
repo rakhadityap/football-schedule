@@ -11,13 +11,12 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.footbalschedule.R
+import com.example.footbalschedule.app.Const.apiService
 import com.example.footbalschedule.app.done
 import com.example.footbalschedule.app.refresh
 import com.example.footbalschedule.app.showToast
 import com.example.footbalschedule.model.Standings
-import kotlinx.android.synthetic.main.fragment_standings.*
 import kotlinx.android.synthetic.main.fragment_standings.view.*
-import kotlinx.android.synthetic.main.fragment_standings.view.standings_refresh
 
 /**
  * A simple [Fragment] subclass.
@@ -35,7 +34,7 @@ class StandingsFragment : Fragment(), StandingsView
     ): View?
     {
         val view = inflater.inflate(R.layout.fragment_standings, container, false)
-        val presenter = StandingsPresenter(this)
+        val presenter = StandingsPresenter(this, apiService)
 
         mContext = activity?.applicationContext
         adapter = StandingsRecyclerViewAdapter(datas, mContext!!){
