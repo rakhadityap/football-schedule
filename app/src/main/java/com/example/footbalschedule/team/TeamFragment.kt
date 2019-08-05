@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.footbalschedule.R
+import com.example.footbalschedule.app.Const.apiService
 import com.example.footbalschedule.app.done
 import com.example.footbalschedule.app.refresh
 import com.example.footbalschedule.model.Team
@@ -35,7 +36,7 @@ class TeamFragment : Fragment(), TeamView
     {
         val view = inflater.inflate(R.layout.fragment_team, container, false)
         mContext = activity!!.applicationContext
-        presenter = TeamPresenter(this)
+        presenter = TeamPresenter(this, apiService)
         adapter = TeamRecyclerViewAdapter(teams, mContext) {
             val intent = Intent(mContext, TeamDetailActivity::class.java).apply {
                 putExtra("idTeam", it.idTeam)

@@ -8,6 +8,7 @@ import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.example.footbalschedule.R
 import com.example.footbalschedule.app.*
+import com.example.footbalschedule.app.Const.apiService
 import com.example.footbalschedule.model.EventDetail
 import kotlinx.android.synthetic.main.activity_event_detail.*
 
@@ -17,7 +18,7 @@ class EventDetailActivity : AppCompatActivity(), EventDetailView {
     private var menuItem: Menu? = null
 
     private val presenter: EventDetailPresenter by lazy {
-        EventDetailPresenter(this)
+        EventDetailPresenter(this, apiService)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

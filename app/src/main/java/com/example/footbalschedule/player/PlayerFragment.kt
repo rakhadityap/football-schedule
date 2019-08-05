@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.footbalschedule.R
+import com.example.footbalschedule.app.Const.apiService
 import com.example.footbalschedule.app.done
 import com.example.footbalschedule.app.refresh
 import com.example.footbalschedule.app.showToast
@@ -41,7 +42,7 @@ class PlayerFragment : Fragment(), PlayerView
     }
 
     private val presenter: PlayerPresenter by lazy{
-        PlayerPresenter(this)
+        PlayerPresenter(this, apiService)
     }
 
     override fun onCreateView(

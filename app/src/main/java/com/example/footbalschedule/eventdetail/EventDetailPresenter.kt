@@ -1,7 +1,7 @@
 package com.example.footbalschedule.eventdetail
 
 import android.content.Context
-import com.example.footbalschedule.app.Const.apiService
+import com.example.footbalschedule.app.network.ApiService
 import com.example.footbalschedule.app.room.FootballDatabase
 import com.example.footbalschedule.model.EventDetail
 import com.example.footbalschedule.model.EventDetailResponse
@@ -14,14 +14,14 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class EventDetailPresenter(private val view: EventDetailView) {
-    private lateinit var detailCall: Call<EventDetailResponse>
+class EventDetailPresenter(private val view: EventDetailView, private val apiService: ApiService) {
+    private var detailCall: Call<EventDetailResponse>? = null
     private var homeCall: Call<TeamResponse>? = null
     private var awayCall: Call<TeamResponse>? = null
 
     fun getEventDetail(eventId: String) {
         detailCall = apiService.getEventDetails(eventId)
-        detailCall.enqueue(object : Callback<EventDetailResponse> {
+        detailCall?.enqueue(object : Callback<EventDetailResponse> {
             override fun onFailure(call: Call<EventDetailResponse>, t: Throwable) {
                 view.showError(t.localizedMessage)
             }
@@ -34,8 +34,8 @@ class EventDetailPresenter(private val view: EventDetailView) {
     }
 
     fun getClubBadge(homeId: String, awayId: String) {
-        homeCall = apiService?.getTeam(homeId)
-        awayCall = apiService?.getTeam(awayId)
+        homeCall = apiService.getTeam(homeId)
+        awayCall = apiService.getTeam(awayId)
 
         var homeURL = ""
         var awayURL = ""
