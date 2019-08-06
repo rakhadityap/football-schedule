@@ -27,7 +27,7 @@ class EventDetailPresenter(private val view: EventDetailView, private val apiSer
             }
 
             override fun onResponse(call: Call<EventDetailResponse>, response: Response<EventDetailResponse>) {
-                view.showDetail(response.body()?.events!![0])
+                view.showDetail(response.body()?.events?.get(0))
             }
 
         })
@@ -37,8 +37,8 @@ class EventDetailPresenter(private val view: EventDetailView, private val apiSer
         homeCall = apiService.getTeam(homeId)
         awayCall = apiService.getTeam(awayId)
 
-        var homeURL = ""
-        var awayURL = ""
+        var homeURL: String
+        var awayURL: String
 
         homeCall?.enqueue(object : Callback<TeamResponse> {
             override fun onResponse(call: Call<TeamResponse>, response: Response<TeamResponse>) {
