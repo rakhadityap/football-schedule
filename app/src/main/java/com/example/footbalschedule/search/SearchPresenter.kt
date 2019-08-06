@@ -1,15 +1,13 @@
 package com.example.footbalschedule.search
 
-import com.example.footbalschedule.app.Const.apiService
-import com.example.footbalschedule.app.showToast
-import com.example.footbalschedule.model.MatchResponse
+import com.example.footbalschedule.app.network.ApiService
 import com.example.footbalschedule.model.MatchSearchResponse
 import com.example.footbalschedule.model.TeamResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class SearchPresenter(val view: SearchView) {
+class SearchPresenter(val view: SearchView, private val apiService: ApiService) {
     private lateinit var callTeam: Call<TeamResponse>
     private lateinit var callMatch: Call<MatchSearchResponse>
 

@@ -1,16 +1,16 @@
 package com.example.footbalschedule.playerdetail
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.footbalschedule.R
+import com.example.footbalschedule.app.Const.apiService
 import com.example.footbalschedule.app.done
 import com.example.footbalschedule.app.refresh
 import com.example.footbalschedule.app.showToast
 import com.example.footbalschedule.model.Player
 import kotlinx.android.synthetic.main.activity_player_detail.*
-import kotlinx.android.synthetic.main.fragment_player.*
 
 class PlayerDetailActivity : AppCompatActivity(), PlayerView {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,7 +21,7 @@ class PlayerDetailActivity : AppCompatActivity(), PlayerView {
         supportActionBar?.title = "Player Detail"
 
         val idPlayer = intent?.getStringExtra("idPlayer") ?: "0000"
-        val presenter = PlayerDetailPresenter(this)
+        val presenter = PlayerDetailPresenter(this, apiService)
 
         player_detail_refresh.setOnRefreshListener {
             presenter.getPlayerDetail(idPlayer)

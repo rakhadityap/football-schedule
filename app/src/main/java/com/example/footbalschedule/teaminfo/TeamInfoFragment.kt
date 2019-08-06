@@ -2,13 +2,13 @@ package com.example.footbalschedule.teaminfo
 
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
-
 import com.example.footbalschedule.R
+import com.example.footbalschedule.app.Const.apiService
 import com.example.footbalschedule.app.done
 import com.example.footbalschedule.app.refresh
 import com.example.footbalschedule.app.showToast
@@ -22,7 +22,7 @@ class TeamInfoFragment : Fragment(), TeamInfoView {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_team_info, container, false)
-        val presenter = TeamInfoPresenter(this)
+        val presenter = TeamInfoPresenter(this, apiService)
         val idTeam = activity?.intent?.getStringExtra("idTeam") ?: "0000"
 
         view.team_info_refresh.setOnRefreshListener {

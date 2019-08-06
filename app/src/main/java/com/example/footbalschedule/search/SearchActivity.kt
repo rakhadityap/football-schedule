@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.footbalschedule.R
+import com.example.footbalschedule.app.Const.apiService
 import com.example.footbalschedule.app.showToast
 import com.example.footbalschedule.eventdetail.EventDetailActivity
 import com.example.footbalschedule.match.MatchRecyclerviewAdapter
@@ -45,7 +46,7 @@ class SearchActivity : AppCompatActivity(), SearchView {
     }
 
     val presenter by lazy {
-        SearchPresenter(this)
+        SearchPresenter(this, apiService)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,12 +1,12 @@
 package com.example.footbalschedule.teaminfo
 
-import com.example.footbalschedule.app.Const.apiService
+import com.example.footbalschedule.app.network.ApiService
 import com.example.footbalschedule.model.TeamResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class TeamInfoPresenter(val view: TeamInfoView) {
+class TeamInfoPresenter(val view: TeamInfoView, private val apiService: ApiService) {
     private lateinit var call: Call<TeamResponse>
 
     fun getTeamInfo(id: String){
