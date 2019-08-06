@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.example.footbalschedule.R
+import com.example.footbalschedule.app.Const.apiService
 import com.example.footbalschedule.app.showToast
 import com.example.footbalschedule.model.Team
 import kotlinx.android.synthetic.main.activity_team_detail.*
@@ -16,7 +17,7 @@ class TeamDetailActivity : AppCompatActivity(), TeamDetailView {
     private var isFavorite = false
 
     private var team: Team? = null
-    private val presenter = TeamDetailPresenter(this)
+    private val presenter = TeamDetailPresenter(this, apiService)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
