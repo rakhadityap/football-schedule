@@ -2,7 +2,7 @@ package com.example.footbalschedule.model
 
 import androidx.room.*
 
-@Entity (tableName = "tb_match")
+@Entity(tableName = "tb_match")
 data class Match(
     @PrimaryKey
     val idEvent: String,
@@ -14,9 +14,11 @@ data class Match(
     val intAwayScore: String = "0",
     val idHomeTeam: String,
     val idAwayTeam: String
-){
+)
+{
     @Dao
-    interface MatchDao{
+    interface MatchDao
+    {
         @Query("SELECT * FROM tb_match")
         suspend fun getAll(): List<Match>
 

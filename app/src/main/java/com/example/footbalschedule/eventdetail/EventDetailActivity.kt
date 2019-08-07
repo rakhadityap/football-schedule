@@ -12,7 +12,8 @@ import com.example.footbalschedule.app.Const.apiService
 import com.example.footbalschedule.model.EventDetail
 import kotlinx.android.synthetic.main.activity_event_detail.*
 
-class EventDetailActivity : AppCompatActivity(), EventDetailView {
+class EventDetailActivity : AppCompatActivity(), EventDetailView
+{
     private var isFavorite = false
     private var eventDetail: EventDetail? = null
     private var menuItem: Menu? = null
@@ -21,7 +22,8 @@ class EventDetailActivity : AppCompatActivity(), EventDetailView {
         EventDetailPresenter(this, apiService)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_event_detail)
 
@@ -40,7 +42,8 @@ class EventDetailActivity : AppCompatActivity(), EventDetailView {
         }
     }
 
-    override fun showDetail(eventDetail: EventDetail?) {
+    override fun showDetail(eventDetail: EventDetail?)
+    {
         this.eventDetail = eventDetail
         event_detail_tanggal.text = getDate("${eventDetail?.strDate} ${eventDetail?.strTime}")
         event_detail_home_team.text = eventDetail?.strHomeTeam
@@ -77,32 +80,39 @@ class EventDetailActivity : AppCompatActivity(), EventDetailView {
 
     }
 
-    override fun showBadges(homeURL: String?, awayURL: String?) {
+    override fun showBadges(homeURL: String?, awayURL: String?)
+    {
         Glide.with(this).load(homeURL).into(event_detail_home_image)
         Glide.with(this).load(awayURL).into(event_detail_away_image)
         event_detail_refresh.done()
         event_detail_container.visible()
     }
 
-    override fun setFavoriteState(inFavorite: Boolean) {
+    override fun setFavoriteState(inFavorite: Boolean)
+    {
         isFavorite = inFavorite
         setFavorite()
     }
 
-    override fun showError(message: String) {
+    override fun showError(message: String)
+    {
         showToast(this, message)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean
+    {
         menuInflater.inflate(R.menu.menu_favorite_detail, menu)
         menuItem = menu
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when (item?.itemId) {
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean
+    {
+        when (item?.itemId)
+        {
             android.R.id.home -> finish()
-            R.id.add_favorite_menu -> {
+            R.id.add_favorite_menu ->
+            {
                 if (isFavorite) presenter.removeFromFavorite(this, eventDetail)
                 else presenter.addToFavorite(this, eventDetail)
                 isFavorite = !isFavorite
@@ -112,7 +122,8 @@ class EventDetailActivity : AppCompatActivity(), EventDetailView {
         return true
     }
 
-    fun setFavorite() {
+    fun setFavorite()
+    {
         if (isFavorite)
             menuItem?.getItem(0)?.icon = ContextCompat.getDrawable(this, R.drawable.ic_favorite)
         else

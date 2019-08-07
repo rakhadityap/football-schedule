@@ -8,7 +8,8 @@ import retrofit2.Response
 
 class LeagueDetailPresenter(private val view: LeagueDetailView, private val apiService: ApiService)
 {
-    fun getLeagueDetail(id: String){
+    fun getLeagueDetail(id: String)
+    {
         val call: Call<LeagueDetailResponse> = apiService.getLeagueDetail(id)
         call.enqueue(object : Callback<LeagueDetailResponse>
         {

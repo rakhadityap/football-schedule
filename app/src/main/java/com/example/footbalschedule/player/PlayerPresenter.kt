@@ -6,17 +6,22 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class PlayerPresenter(val view: PlayerView, private val apiService: ApiService) {
+class PlayerPresenter(val view: PlayerView, private val apiService: ApiService)
+{
     private lateinit var call: Call<PlayerListResponse>
 
-    fun getPlayers(id: String){
+    fun getPlayers(id: String)
+    {
         call = apiService.getPlayerList(id)
-        call.enqueue(object: Callback<PlayerListResponse>{
-            override fun onFailure(call: Call<PlayerListResponse>, t: Throwable) {
+        call.enqueue(object : Callback<PlayerListResponse>
+        {
+            override fun onFailure(call: Call<PlayerListResponse>, t: Throwable)
+            {
                 view.showError(t.localizedMessage)
             }
 
-            override fun onResponse(call: Call<PlayerListResponse>, response: Response<PlayerListResponse>) {
+            override fun onResponse(call: Call<PlayerListResponse>, response: Response<PlayerListResponse>)
+            {
                 view.showPlayers(response.body()?.player)
             }
 

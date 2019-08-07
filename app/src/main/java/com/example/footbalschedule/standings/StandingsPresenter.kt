@@ -12,7 +12,8 @@ class StandingsPresenter(private val view: StandingsView, private val apiService
     fun getStandings(leagueId: String)
     {
         call = apiService.getStandings(leagueId)
-        call?.enqueue(object : Callback<StandingsResponse>{
+        call?.enqueue(object : Callback<StandingsResponse>
+        {
             override fun onFailure(call: Call<StandingsResponse>, t: Throwable)
             {
                 view.showError(t.localizedMessage)
@@ -20,7 +21,7 @@ class StandingsPresenter(private val view: StandingsView, private val apiService
 
             override fun onResponse(call: Call<StandingsResponse>, response: Response<StandingsResponse>)
             {
-                response.body()?.table.let{
+                response.body()?.table.let {
                     view.showStandings(it)
                 }
             }

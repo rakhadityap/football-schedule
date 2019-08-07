@@ -18,10 +18,12 @@ data class Team(
     val strTeamJersey: String?,
     val strTeamBanner: String?,
     val strDescriptionEN: String?
-){
+)
+{
 
     @Dao
-    interface TeamDao{
+    interface TeamDao
+    {
         @Query("SELECT * FROM tb_team")
         suspend fun getAll(): List<Team>
 

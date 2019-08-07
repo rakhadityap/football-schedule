@@ -51,7 +51,7 @@ class LeagueActivity : AppCompatActivity(), LeagueView
 
     override fun showLeague(leagues: List<League>?)
     {
-        leagues?.let{
+        leagues?.let {
             leagueList.clear()
             leagueList.addAll(it)
             adapter.notifyDataSetChanged()
@@ -71,9 +71,14 @@ class LeagueActivity : AppCompatActivity(), LeagueView
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when (item?.itemId){
-            R.id.menu_favorite -> { startActivity(Intent(applicationContext, FavoriteActivity::class.java))}
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean
+    {
+        when (item?.itemId)
+        {
+            R.id.menu_favorite ->
+            {
+                startActivity(Intent(applicationContext, FavoriteActivity::class.java))
+            }
         }
         return true
     }

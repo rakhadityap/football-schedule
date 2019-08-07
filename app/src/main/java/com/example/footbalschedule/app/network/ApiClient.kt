@@ -9,20 +9,20 @@ import java.util.concurrent.TimeUnit
 
 object ApiClient
 {
-    val retrofit by lazy{
+    val retrofit by lazy {
         Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .client(initOkHttp())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
+            .baseUrl(BASE_URL)
+            .client(initOkHttp())
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
     }
 
-    fun initOkHttp() : OkHttpClient
+    fun initOkHttp(): OkHttpClient
     {
         return OkHttpClient().newBuilder()
-                .connectTimeout(REQUEST_TIMEOUT.toLong(), TimeUnit.SECONDS)
-                .readTimeout(REQUEST_TIMEOUT.toLong(), TimeUnit.SECONDS)
-                .writeTimeout(REQUEST_TIMEOUT.toLong(), TimeUnit.SECONDS)
-                .build()
+            .connectTimeout(REQUEST_TIMEOUT.toLong(), TimeUnit.SECONDS)
+            .readTimeout(REQUEST_TIMEOUT.toLong(), TimeUnit.SECONDS)
+            .writeTimeout(REQUEST_TIMEOUT.toLong(), TimeUnit.SECONDS)
+            .build()
     }
 }

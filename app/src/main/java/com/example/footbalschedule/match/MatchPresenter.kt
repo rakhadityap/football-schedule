@@ -50,7 +50,8 @@ class MatchPresenter(private val view: MatchView, private val apiService: ApiSer
         })
     }
 
-    fun cancelRequest(){
+    fun cancelRequest()
+    {
         nextMatchCall?.cancel()
         pastMatchCall?.cancel()
     }

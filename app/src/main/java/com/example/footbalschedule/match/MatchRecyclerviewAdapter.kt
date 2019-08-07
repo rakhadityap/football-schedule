@@ -23,7 +23,7 @@ class MatchRecyclerviewAdapter(
 
     override fun getItemId(position: Int): Long = matches[position].idEvent.toLong()
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int)= holder.bind(matches[position], listener)
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(matches[position], listener)
 
     class ViewHolder(val view: View) : RecyclerView.ViewHolder(view)
     {
@@ -34,12 +34,13 @@ class MatchRecyclerviewAdapter(
         private val eventAwayScore = view.match_away_score
 
 
-        fun bind(match: Match, listener: (Match) -> Unit){
+        fun bind(match: Match, listener: (Match) -> Unit)
+        {
             eventDatetime.text = getDate("${match.strDate} ${match.strTime}")
             eventHomeTeam.text = match.strHomeTeam
-            eventHomeScore.text = if(!match.intHomeScore.isNullOrEmpty()) match.intHomeScore else "-"
+            eventHomeScore.text = if (!match.intHomeScore.isNullOrEmpty()) match.intHomeScore else "-"
             eventAwayTeam.text = match.strAwayTeam
-            eventAwayScore.text = if(!match.intAwayScore.isNullOrEmpty()) match.intAwayScore else "-"
+            eventAwayScore.text = if (!match.intAwayScore.isNullOrEmpty()) match.intAwayScore else "-"
 
             view.setOnClickListener { listener(match) }
         }

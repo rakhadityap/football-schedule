@@ -10,9 +10,11 @@ class TeamPresenter(val view: TeamView, private val apiService: ApiService)
 {
     private lateinit var callTeam: Call<TeamResponse>
 
-    fun getTeams(id: String){
+    fun getTeams(id: String)
+    {
         callTeam = apiService.getTeamList(id)
-        callTeam.enqueue(object: Callback<TeamResponse>{
+        callTeam.enqueue(object : Callback<TeamResponse>
+        {
             override fun onFailure(call: Call<TeamResponse>, t: Throwable)
             {
                 view.showError(t.localizedMessage)

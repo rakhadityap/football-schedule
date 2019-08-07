@@ -6,17 +6,22 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class TeamInfoPresenter(val view: TeamInfoView, private val apiService: ApiService) {
+class TeamInfoPresenter(val view: TeamInfoView, private val apiService: ApiService)
+{
     private lateinit var call: Call<TeamResponse>
 
-    fun getTeamInfo(id: String){
+    fun getTeamInfo(id: String)
+    {
         call = apiService.getTeam(id)
-        call.enqueue(object: Callback<TeamResponse>{
-            override fun onFailure(call: Call<TeamResponse>, t: Throwable) {
+        call.enqueue(object : Callback<TeamResponse>
+        {
+            override fun onFailure(call: Call<TeamResponse>, t: Throwable)
+            {
                 view.showError(t.localizedMessage)
             }
 
-            override fun onResponse(call: Call<TeamResponse>, response: Response<TeamResponse>) {
+            override fun onResponse(call: Call<TeamResponse>, response: Response<TeamResponse>)
+            {
                 view.showTeamInfo(response.body()?.teams?.get(0))
             }
 

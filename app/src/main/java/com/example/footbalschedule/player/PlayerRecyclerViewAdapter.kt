@@ -14,7 +14,8 @@ class PlayerRecyclerViewAdapter(
     private val datas: List<Player>,
     private val mContext: Context,
     private val listener: (Player) -> Unit
-) : RecyclerView.Adapter<PlayerRecyclerViewAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<PlayerRecyclerViewAdapter.ViewHolder>()
+{
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         ViewHolder(LayoutInflater.from(mContext).inflate(R.layout.generic_list_item, parent, false))
 
@@ -22,12 +23,14 @@ class PlayerRecyclerViewAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(datas[position], listener)
 
-    class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(val view: View) : RecyclerView.ViewHolder(view)
+    {
         private val playerName = view.generic_list_title
         private val playerPos = view.generic_list_subtitle
         private val playerBadge = view.generic_list_badge
 
-        fun bind(player: Player, listener: (Player) -> Unit) {
+        fun bind(player: Player, listener: (Player) -> Unit)
+        {
             playerName.text = player.strPlayer
             playerPos.text = player.strPosition
             Glide.with(view)

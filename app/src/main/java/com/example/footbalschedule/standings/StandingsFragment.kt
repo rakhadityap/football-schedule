@@ -37,7 +37,7 @@ class StandingsFragment : Fragment(), StandingsView
         val presenter = StandingsPresenter(this, apiService)
 
         mContext = activity?.applicationContext
-        adapter = StandingsRecyclerViewAdapter(datas, mContext!!){
+        adapter = StandingsRecyclerViewAdapter(datas, mContext!!) {
         }
         val leagueId: String = activity?.intent?.getStringExtra("idLeague") ?: "0000"
         Log.d("League ID", leagueId)

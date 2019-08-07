@@ -18,7 +18,8 @@ import com.example.footbalschedule.team.TeamRecyclerViewAdapter
 import com.example.footbalschedule.teamdetail.TeamDetailActivity
 import kotlinx.android.synthetic.main.activity_search.*
 
-class SearchActivity : AppCompatActivity(), SearchView {
+class SearchActivity : AppCompatActivity(), SearchView
+{
     val fragmentSource by lazy {
         intent.getIntExtra("source", 0)
     }
@@ -27,15 +28,18 @@ class SearchActivity : AppCompatActivity(), SearchView {
     val teamList: MutableList<Team> = mutableListOf()
 
     val adapter by lazy {
-        when (fragmentSource) {
-            0, 1 -> {
+        when (fragmentSource)
+        {
+            0, 1 ->
+            {
                 MatchRecyclerviewAdapter(matchList, this) {
                     startActivity(Intent(this, EventDetailActivity::class.java).apply {
                         putExtra("eventId", it.idEvent)
                     })
                 }
             }
-            else -> {
+            else ->
+            {
                 TeamRecyclerViewAdapter(teamList, this) {
                     startActivity(Intent(this, TeamDetailActivity::class.java).apply {
                         putExtra("idTeam", it.idTeam)
@@ -49,7 +53,8 @@ class SearchActivity : AppCompatActivity(), SearchView {
         SearchPresenter(this, apiService)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
 
@@ -59,16 +64,20 @@ class SearchActivity : AppCompatActivity(), SearchView {
         search_recyclerview.adapter = adapter
     }
 
-    override fun showError(message: String) {
+    override fun showError(message: String)
+    {
         showToast(this, message)
     }
 
-    override fun showSearchResult(datas: List<Any>?) {
+    override fun showSearchResult(datas: List<Any>?)
+    {
         datas?.let {
-            if (fragmentSource == 0 || fragmentSource == 1) {
+            if (fragmentSource == 0 || fragmentSource == 1)
+            {
                 matchList.clear()
                 matchList.addAll(it as List<Match>)
-            } else {
+            } else
+            {
                 teamList.clear()
                 teamList.addAll(it as List<Team>)
             }
@@ -76,26 +85,33 @@ class SearchActivity : AppCompatActivity(), SearchView {
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean
+    {
         menuInflater.inflate(R.menu.search_menu_detail, menu)
 
         val search = menu?.findItem(R.id.search_id)
         val searchView = search?.actionView as androidx.appcompat.widget.SearchView
         searchView.isSubmitButtonEnabled = true
 
-        when (fragmentSource) {
+        when (fragmentSource)
+        {
             0, 1 -> searchView.queryHint = "Search Match"
             else -> searchView.queryHint = "Search Team"
         }
 
-        searchView.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                if (query == "") {
+        searchView.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener
+        {
+            override fun onQueryTextSubmit(query: String?): Boolean
+            {
+                if (query == "")
+                {
                     matchList.clear()
                     teamList.clear()
                     adapter.notifyDataSetChanged()
-                } else {
-                    when (fragmentSource) {
+                } else
+                {
+                    when (fragmentSource)
+                    {
                         0, 1 -> presenter.searchMatch(query ?: "")
                         else -> presenter.searchTeam(query ?: "")
                     }
@@ -103,13 +119,17 @@ class SearchActivity : AppCompatActivity(), SearchView {
                 return true
             }
 
-            override fun onQueryTextChange(newText: String?): Boolean {
-                if (newText == "") {
+            override fun onQueryTextChange(newText: String?): Boolean
+            {
+                if (newText == "")
+                {
                     matchList.clear()
                     teamList.clear()
                     adapter.notifyDataSetChanged()
-                } else {
-                    when (fragmentSource) {
+                } else
+                {
+                    when (fragmentSource)
+                    {
                         0, 1 -> presenter.searchMatch(newText ?: "")
                         else -> presenter.searchTeam(newText ?: "")
                     }
@@ -126,8 +146,10 @@ class SearchActivity : AppCompatActivity(), SearchView {
         return true
     }*/
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when (item?.itemId) {
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean
+    {
+        when (item?.itemId)
+        {
             android.R.id.home -> finish()
         }
         return true

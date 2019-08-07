@@ -12,7 +12,8 @@ import com.example.footbalschedule.app.showToast
 import com.example.footbalschedule.model.Team
 import kotlinx.android.synthetic.main.activity_team_detail.*
 
-class TeamDetailActivity : AppCompatActivity(), TeamDetailView {
+class TeamDetailActivity : AppCompatActivity(), TeamDetailView
+{
     private var menuItem: Menu? = null
     private var isFavorite = false
 
@@ -20,7 +21,8 @@ class TeamDetailActivity : AppCompatActivity(), TeamDetailView {
     private val presenter = TeamDetailPresenter(this, apiService)
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_team_detail)
         setSupportActionBar(team_detail_toolbar)
@@ -37,7 +39,8 @@ class TeamDetailActivity : AppCompatActivity(), TeamDetailView {
 
     }
 
-    override fun showTeamDetail(team: Team?) {
+    override fun showTeamDetail(team: Team?)
+    {
         this.team = team
         team?.let {
             team_detail_name.text = it.strTeam
@@ -51,26 +54,32 @@ class TeamDetailActivity : AppCompatActivity(), TeamDetailView {
         }
     }
 
-    override fun showError(message: String) {
+    override fun showError(message: String)
+    {
         showToast(this, message)
     }
 
-    override fun setFavoriteState(inFavorite: Boolean) {
+    override fun setFavoriteState(inFavorite: Boolean)
+    {
         isFavorite = inFavorite
         setFavorite()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean
+    {
         menuInflater.inflate(R.menu.menu_favorite_detail, menu)
         menuItem = menu
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when(item?.itemId){
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean
+    {
+        when (item?.itemId)
+        {
             android.R.id.home -> finish()
-            R.id.add_favorite_menu ->{
-                if(isFavorite) presenter.removeFromFavorite(this, team)
+            R.id.add_favorite_menu ->
+            {
+                if (isFavorite) presenter.removeFromFavorite(this, team)
                 else presenter.addToFavorite(this, team)
 
                 isFavorite = !isFavorite
@@ -80,7 +89,8 @@ class TeamDetailActivity : AppCompatActivity(), TeamDetailView {
         return true
     }
 
-    fun setFavorite() {
+    fun setFavorite()
+    {
         if (isFavorite)
             menuItem?.getItem(0)?.icon = ContextCompat.getDrawable(this, R.drawable.ic_favorite)
         else

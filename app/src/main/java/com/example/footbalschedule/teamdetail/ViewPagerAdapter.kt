@@ -6,12 +6,14 @@ import androidx.fragment.app.FragmentPagerAdapter
 import com.example.footbalschedule.player.PlayerFragment
 import com.example.footbalschedule.teaminfo.TeamInfoFragment
 
-class ViewPagerAdapter(fm: FragmentManager): FragmentPagerAdapter(fm) {
+class ViewPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm)
+{
     val title = listOf("Info", "Players")
     val pages: List<Fragment> = listOf(
         TeamInfoFragment(),
         PlayerFragment()
     )
+
     override fun getItem(position: Int): Fragment = pages[position]
 
     override fun getCount(): Int = pages.size

@@ -12,8 +12,10 @@ import com.example.footbalschedule.app.showToast
 import com.example.footbalschedule.model.Player
 import kotlinx.android.synthetic.main.activity_player_detail.*
 
-class PlayerDetailActivity : AppCompatActivity(), PlayerView {
-    override fun onCreate(savedInstanceState: Bundle?) {
+class PlayerDetailActivity : AppCompatActivity(), PlayerView
+{
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_player_detail)
         setSupportActionBar(player_detail_toolbar)
@@ -32,8 +34,9 @@ class PlayerDetailActivity : AppCompatActivity(), PlayerView {
         presenter.getPlayerDetail(idPlayer)
     }
 
-    override fun showPlayerDetail(player: Player?) {
-        player?.let{
+    override fun showPlayerDetail(player: Player?)
+    {
+        player?.let {
             player_detail_name.text = it.strPlayer
             player_detail_position.text = it.strPosition
             player_detail_description.text = it.strDescriptionEN
@@ -49,13 +52,16 @@ class PlayerDetailActivity : AppCompatActivity(), PlayerView {
         player_detail_refresh.done()
     }
 
-    override fun showError(message: String) {
+    override fun showError(message: String)
+    {
         showToast(this, message)
         player_detail_refresh.done()
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when (item?.itemId) {
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean
+    {
+        when (item?.itemId)
+        {
             android.R.id.home -> finish()
         }
         return true

@@ -26,22 +26,22 @@ import kotlinx.android.synthetic.main.fragment_player.view.*
 class PlayerFragment : Fragment(), PlayerView
 {
     private val players: MutableList<Player> = mutableListOf()
-    private val mContext: Context by lazy{
+    private val mContext: Context by lazy {
         activity!!.applicationContext
     }
     private val adapter: PlayerRecyclerViewAdapter by lazy {
-        PlayerRecyclerViewAdapter(players, mContext){
+        PlayerRecyclerViewAdapter(players, mContext) {
             val intent = Intent(mContext, PlayerDetailActivity::class.java).apply {
                 putExtra("idPlayer", it.idPlayer)
             }
             startActivity(intent)
         }
     }
-    private val idTeam:String by lazy{
+    private val idTeam: String by lazy {
         activity!!.intent.getStringExtra("idTeam")
     }
 
-    private val presenter: PlayerPresenter by lazy{
+    private val presenter: PlayerPresenter by lazy {
         PlayerPresenter(this, apiService)
     }
 
@@ -65,8 +65,9 @@ class PlayerFragment : Fragment(), PlayerView
         return view
     }
 
-    override fun showPlayers(players: List<Player>?) {
-        players?.let{
+    override fun showPlayers(players: List<Player>?)
+    {
+        players?.let {
             this.players.clear()
             this.players.addAll(it)
             adapter.notifyDataSetChanged()
@@ -74,7 +75,8 @@ class PlayerFragment : Fragment(), PlayerView
         this.view?.player_refresh?.done()
     }
 
-    override fun showError(message: String) {
+    override fun showError(message: String)
+    {
         showToast(mContext, message)
     }
 }

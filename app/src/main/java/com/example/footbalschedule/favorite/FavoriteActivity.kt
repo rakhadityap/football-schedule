@@ -16,7 +16,8 @@ import com.example.footbalschedule.team.TeamRecyclerViewAdapter
 import com.example.footbalschedule.teamdetail.TeamDetailActivity
 import kotlinx.android.synthetic.main.activity_favorite.*
 
-class FavoriteActivity : AppCompatActivity(), FavoriteView {
+class FavoriteActivity : AppCompatActivity(), FavoriteView
+{
 
 
     var menuPosition = 0
@@ -43,7 +44,8 @@ class FavoriteActivity : AppCompatActivity(), FavoriteView {
 
     val presenter: FavoritePresenter = FavoritePresenter(this)
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_favorite)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -51,12 +53,15 @@ class FavoriteActivity : AppCompatActivity(), FavoriteView {
         favorite_recyclerview.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
 
         favorite_bottombar.setOnNavigationItemSelectedListener {
-            when (it.itemId) {
-                R.id.favorite_event_menu -> {
+            when (it.itemId)
+            {
+                R.id.favorite_event_menu ->
+                {
                     menuPosition = 0
                     presenter.getFavoriteMatch(this)
                 }
-                R.id.favorite_team_menu -> {
+                R.id.favorite_team_menu ->
+                {
                     menuPosition = 1
                     presenter.getFavoriteTeam(this)
                 }
@@ -67,15 +72,19 @@ class FavoriteActivity : AppCompatActivity(), FavoriteView {
         presenter.getFavoriteMatch(this)
     }
 
-    override fun showFavorite(datas: List<Any>?) {
-        when (menuPosition) {
-            0 -> {
+    override fun showFavorite(datas: List<Any>?)
+    {
+        when (menuPosition)
+        {
+            0 ->
+            {
                 favorite_recyclerview.adapter = matchAdapter
                 matchList.clear()
                 matchList.addAll(datas as List<Match>)
                 matchAdapter.notifyDataSetChanged()
             }
-            1 -> {
+            1 ->
+            {
                 favorite_recyclerview.adapter = teamAdapter
                 teamList.clear()
                 teamList.addAll(datas as List<Team>)
@@ -84,20 +93,25 @@ class FavoriteActivity : AppCompatActivity(), FavoriteView {
         }
     }
 
-    override fun showError(message: String) {
+    override fun showError(message: String)
+    {
         showToast(this, message)
     }
 
-    override fun onResume() {
+    override fun onResume()
+    {
         super.onResume()
-        when(menuPosition){
+        when (menuPosition)
+        {
             0 -> presenter.getFavoriteMatch(this)
             1 -> presenter.getFavoriteTeam(this)
         }
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when(item?.itemId){
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean
+    {
+        when (item?.itemId)
+        {
             android.R.id.home -> finish()
         }
         return true

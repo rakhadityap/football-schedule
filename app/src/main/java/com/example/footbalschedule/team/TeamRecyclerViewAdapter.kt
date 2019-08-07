@@ -11,9 +11,10 @@ import com.example.footbalschedule.model.Team
 import kotlinx.android.synthetic.main.generic_list_item.view.*
 
 class TeamRecyclerViewAdapter(
-        val datas: List<Team>,
-        val mContext: Context,
-        val listener: (Team) -> Unit) : RecyclerView.Adapter<TeamRecyclerViewAdapter.ViewHolder>()
+    val datas: List<Team>,
+    val mContext: Context,
+    val listener: (Team) -> Unit
+) : RecyclerView.Adapter<TeamRecyclerViewAdapter.ViewHolder>()
 {
     class ViewHolder(val view: View) : RecyclerView.ViewHolder(view)
     {
@@ -33,12 +34,12 @@ class TeamRecyclerViewAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
-            ViewHolder(LayoutInflater.from(mContext).inflate(R.layout.generic_list_item, parent, false))
+        ViewHolder(LayoutInflater.from(mContext).inflate(R.layout.generic_list_item, parent, false))
 
     override fun getItemCount(): Int = datas.size
 
     override fun getItemId(position: Int): Long = datas[position].idTeam.toLong()
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
-            holder.bind(datas[position], listener)
+        holder.bind(datas[position], listener)
 }

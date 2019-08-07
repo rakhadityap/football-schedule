@@ -16,11 +16,13 @@ import com.example.footbalschedule.app.visible
 import com.example.footbalschedule.model.Team
 import kotlinx.android.synthetic.main.fragment_team_info.view.*
 
-class TeamInfoFragment : Fragment(), TeamInfoView {
+class TeamInfoFragment : Fragment(), TeamInfoView
+{
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View?
+    {
         val view = inflater.inflate(R.layout.fragment_team_info, container, false)
         val presenter = TeamInfoPresenter(this, apiService)
         val idTeam = activity?.intent?.getStringExtra("idTeam") ?: "0000"
@@ -34,8 +36,9 @@ class TeamInfoFragment : Fragment(), TeamInfoView {
         return view
     }
 
-    override fun showTeamInfo(team: Team?) {
-        team?.let{
+    override fun showTeamInfo(team: Team?)
+    {
+        team?.let {
             this.view?.team_info_stadium?.text = it.strStadium
             this.view?.team_info_location?.text = it.strStadiumLocation
             this.view?.team_info_description?.text = it.strDescriptionEN
@@ -48,7 +51,8 @@ class TeamInfoFragment : Fragment(), TeamInfoView {
         this.view?.team_info?.visible()
     }
 
-    override fun showError(message: String) {
+    override fun showError(message: String)
+    {
         showToast(activity!!.applicationContext, message)
     }
 }

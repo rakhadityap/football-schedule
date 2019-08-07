@@ -7,7 +7,8 @@ import com.example.footbalschedule.match.MatchFragment
 import com.example.footbalschedule.standings.StandingsFragment
 import com.example.footbalschedule.team.TeamFragment
 
-class ViewPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
+class ViewPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm)
+{
     val title = listOf("Match", "Standings", "Team")
     val pages: List<Fragment> = listOf(
         MatchFragment(),

@@ -35,7 +35,8 @@ fun SwipeRefreshLayout.done()
     isRefreshing = false
 }
 
-fun getDate(dateString: String): String? {
+fun getDate(dateString: String): String?
+{
     try
     {
         val f = SimpleDateFormat("dd/MM/yy HH:mm:ssZ", Locale("id", "ID"))
@@ -53,12 +54,14 @@ fun getDate(dateString: String): String? {
         val minutes = df.format(cal.get(Calendar.MINUTE))
         val tanggal = "$dayOfWeek, $date $month $year $hours:$minutes"
         return tanggal
-    } catch (e: Exception){
+    } catch (e: Exception)
+    {
         return null
     }
 }
 
-fun getDay(dayOfWeek: Int) = when (dayOfWeek) {
+fun getDay(dayOfWeek: Int) = when (dayOfWeek)
+{
     1 -> "Min"
     2 -> "Sen"
     3 -> "Sel"
@@ -69,27 +72,30 @@ fun getDay(dayOfWeek: Int) = when (dayOfWeek) {
     else -> "-"
 }
 
-fun getMonth(month: Int) = when (month){
+fun getMonth(month: Int) = when (month)
+{
     0 -> "Jan"
     1 -> "Feb"
     2 -> "Mar"
-    3->"Apr"
-    4->"Mei"
-    5->"Jun"
-    6->"Jul"
-    7->"Agu"
-    8->"Sep"
-    9->"Okt"
-    10->"Nov"
-    11->"Des"
+    3 -> "Apr"
+    4 -> "Mei"
+    5 -> "Jun"
+    6 -> "Jul"
+    7 -> "Agu"
+    8 -> "Sep"
+    9 -> "Okt"
+    10 -> "Nov"
+    11 -> "Des"
     else -> "-"
 }
 
-fun showToast(context: Context, message: String){
+fun showToast(context: Context, message: String)
+{
     Toast.makeText(context, message, Toast.LENGTH_LONG).show()
 }
 
-fun snapRecyclerView(r: RecyclerView){
+fun snapRecyclerView(r: RecyclerView)
+{
     val snapHelper = LinearSnapHelper()
     snapHelper.attachToRecyclerView(r)
 }

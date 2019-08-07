@@ -8,14 +8,16 @@ import com.example.footbalschedule.model.Match
 import com.example.footbalschedule.model.Team
 
 @Database(entities = [Match::class, Team::class], version = 1)
-abstract class FootballDatabase : RoomDatabase() {
+abstract class FootballDatabase : RoomDatabase()
+{
     abstract fun matchDao(): Match.MatchDao
 //    abstract fun eventDetailDao(): EventDetail.EventDao
 
     abstract fun teamDao(): Team.TeamDao
 //    abstract fun teamDetailDao(): Team.TeamDao
 
-    companion object {
+    companion object
+    {
 
         @Volatile
         private var instance: FootballDatabase? = null
