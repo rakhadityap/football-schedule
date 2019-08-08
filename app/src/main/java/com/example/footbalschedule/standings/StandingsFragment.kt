@@ -23,7 +23,7 @@ import kotlinx.android.synthetic.main.fragment_standings.view.*
  *
  */
 class StandingsFragment : Fragment(), StandingsView {
-    private var mContext: Context? = null
+    private lateinit var mContext: Context
     private val datas: MutableList<Standings> = mutableListOf()
     private lateinit var adapter: StandingsRecyclerViewAdapter
     private val presenter = StandingsPresenter(this, apiService)
@@ -35,8 +35,8 @@ class StandingsFragment : Fragment(), StandingsView {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_standings, container, false)
 
-        mContext = activity?.applicationContext
-        adapter = StandingsRecyclerViewAdapter(datas, mContext!!) {
+        mContext = activity!!.applicationContext
+        adapter = StandingsRecyclerViewAdapter(datas, mContext) {
         }
         val leagueId: String = activity?.intent?.getStringExtra("idLeague") ?: "0000"
         Log.d("League ID", leagueId)
@@ -65,8 +65,8 @@ class StandingsFragment : Fragment(), StandingsView {
         this.view?.standings_refresh?.done()
     }
 
-    override fun showError(message: String) {
-        showToast(mContext!!, message)
+    override fun showError(message: String?) {
+        showToast(mContext, message?:"Error")
     }
 
     override fun onPause() {

@@ -54,9 +54,8 @@ class TeamDetailActivity : AppCompatActivity(), TeamDetailView
         }
     }
 
-    override fun showError(message: String)
-    {
-        showToast(this, message)
+    override fun showError(message: String?) {
+        showToast(this, message ?: "Error")
     }
 
     override fun setFavoriteState(inFavorite: Boolean)

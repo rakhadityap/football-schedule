@@ -106,9 +106,8 @@ class MatchFragment : Fragment(), MatchView {
         }
     }
 
-    override fun showError(message: String) {
-        showToast(activity!!.applicationContext, message)
-        Log.e("Match", message)
+    override fun showError(message: String?) {
+        showToast(mContext, message?:"Error")
     }
 
     override fun onPause() {

@@ -69,9 +69,8 @@ class TeamFragment : Fragment(), TeamView
         this.view?.team_refresh?.done()
     }
 
-    override fun showError(message: String)
-    {
-        showToast(mContext, message)
+    override fun showError(message: String?) {
+        showToast(mContext, message?:"Error")
     }
 
     override fun onPause() {

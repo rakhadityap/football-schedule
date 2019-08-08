@@ -59,9 +59,9 @@ class LeagueActivity : AppCompatActivity(), LeagueView
         league_list_refreshview.done()
     }
 
-    override fun showError(message: String)
-    {
-        showToast(this, message)
+    override fun showError(message: String?) {
+        showToast(this, message ?: "Error")
+
         league_list_refreshview.done()
     }
 

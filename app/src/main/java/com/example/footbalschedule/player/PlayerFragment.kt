@@ -75,9 +75,9 @@ class PlayerFragment : Fragment(), PlayerView
         this.view?.player_refresh?.done()
     }
 
-    override fun showError(message: String)
-    {
-        showToast(mContext, message)
+    override fun showError(message: String?) {
+        showToast(mContext, message ?: "Error")
+
     }
 
     override fun onPause() {

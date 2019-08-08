@@ -1,6 +1,7 @@
 package com.example.footbalschedule.teaminfo
 
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,7 +19,8 @@ import kotlinx.android.synthetic.main.fragment_team_info.view.*
 
 class TeamInfoFragment : Fragment(), TeamInfoView
 {
-    val presenter = TeamInfoPresenter(this, apiService)
+    private val presenter = TeamInfoPresenter(this, apiService)
+    private lateinit var mContext: Context
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,6 +29,7 @@ class TeamInfoFragment : Fragment(), TeamInfoView
     {
         val view = inflater.inflate(R.layout.fragment_team_info, container, false)
         val idTeam = activity?.intent?.getStringExtra("idTeam") ?: "0000"
+        mContext = activity!!.applicationContext
 
         view.team_info_refresh.setOnRefreshListener {
             presenter.getTeamInfo(idTeam)
@@ -52,9 +55,8 @@ class TeamInfoFragment : Fragment(), TeamInfoView
         this.view?.team_info?.visible()
     }
 
-    override fun showError(message: String)
-    {
-        showToast(activity!!.applicationContext, message)
+    override fun showError(message: String?) {
+        showToast(mContext, message?:"Error")
     }
 
     override fun onPause() {

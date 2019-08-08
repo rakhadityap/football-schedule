@@ -53,9 +53,8 @@ class PlayerDetailActivity : AppCompatActivity(), PlayerView
         player_detail_refresh.done()
     }
 
-    override fun showError(message: String)
-    {
-        showToast(this, message)
+    override fun showError(message: String?) {
+        showToast(this, message?:"Error")
         player_detail_refresh.done()
     }
 

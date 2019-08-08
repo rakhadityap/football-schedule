@@ -8,10 +8,12 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.footbalschedule.R
 import com.example.footbalschedule.app.Const.apiService
+import com.example.footbalschedule.app.done
 import com.example.footbalschedule.app.showToast
 import com.example.footbalschedule.model.League
 import com.example.footbalschedule.search.SearchActivity
 import kotlinx.android.synthetic.main.activity_league_detail.*
+import kotlinx.android.synthetic.main.activity_main.*
 
 class LeagueDetailActivity : AppCompatActivity(), LeagueDetailView
 {
@@ -47,9 +49,10 @@ class LeagueDetailActivity : AppCompatActivity(), LeagueDetailView
         }
     }
 
-    override fun showError(message: String)
-    {
-        showToast(this, message)
+    override fun showError(message: String?) {
+        showToast(this, message ?: "Error")
+
+        league_list_refreshview.done()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean

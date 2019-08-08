@@ -62,9 +62,8 @@ class SearchActivity : AppCompatActivity(), SearchView
         search_recyclerview.adapter = adapter
     }
 
-    override fun showError(message: String)
-    {
-        showToast(this, message)
+    override fun showError(message: String?) {
+        showToast(this, message ?: "Error")
     }
 
     override fun showSearchResult(datas: List<Any>?)
