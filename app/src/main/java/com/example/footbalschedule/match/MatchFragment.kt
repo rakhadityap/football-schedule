@@ -23,22 +23,20 @@ import kotlinx.android.synthetic.main.fragment_match.view.*
  * A simple [Fragment] subclass.
  *
  */
-class MatchFragment : Fragment(), MatchView
-{
+class MatchFragment : Fragment(), MatchView {
     private lateinit var mContext: Context
     private val nextMatches: MutableList<Match> = mutableListOf()
     private val pastMatches: MutableList<Match> = mutableListOf()
     private lateinit var nextAdapter: MatchRecyclerviewAdapter
     private lateinit var pastAdapter: MatchRecyclerviewAdapter
+    val presenter = MatchPresenter(this, apiService)
 
     private var refresh = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View?
-    {
+    ): View? {
         val view = inflater.inflate(R.layout.fragment_match, container, false)
-        val presenter = MatchPresenter(this, apiService)
         val leagueId: String = activity?.intent?.getStringExtra("idLeague") ?: "0000"
 
         mContext = activity!!.applicationContext
@@ -70,7 +68,6 @@ class MatchFragment : Fragment(), MatchView
 
 
         view.match_refreshview.setOnRefreshListener {
-            // TODO: Fix data gak nampil kalo refresh
             presenter.getFutureMatches(leagueId)
             presenter.getPastMatches(leagueId)
         }
@@ -81,8 +78,7 @@ class MatchFragment : Fragment(), MatchView
         return view
     }
 
-    override fun showFutureMatches(matches: List<Match>?)
-    {
+    override fun showFutureMatches(matches: List<Match>?) {
         matches?.let {
             nextMatches.clear()
             nextMatches.addAll(it)
@@ -92,8 +88,7 @@ class MatchFragment : Fragment(), MatchView
         stopRefresh()
     }
 
-    override fun showPastMatches(matches: List<Match>?)
-    {
+    override fun showPastMatches(matches: List<Match>?) {
         matches?.let {
             pastMatches.clear()
             pastMatches.addAll(it)
@@ -103,21 +98,23 @@ class MatchFragment : Fragment(), MatchView
         stopRefresh()
     }
 
-    fun stopRefresh()
-    {
+    fun stopRefresh() {
         refresh++
-        if (refresh == 2)
-        {
+        if (refresh == 2) {
             refresh = 0
             this.view?.match_refreshview?.done()
         }
     }
 
-    override fun showError(message: String)
-    {
+    override fun showError(message: String) {
         showToast(activity!!.applicationContext, message)
         Log.e("Match", message)
     }
 
+    override fun onPause() {
+        super.onPause()
+
+        presenter.stopRequest()
+    }
 
 }

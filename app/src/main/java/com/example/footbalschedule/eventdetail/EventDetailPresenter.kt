@@ -38,6 +38,12 @@ class EventDetailPresenter(private val view: EventDetailView, private val apiSer
         })
     }
 
+    fun stopRequest(){
+        detailCall?.cancel()
+        homeCall?.cancel()
+        awayCall?.cancel()
+    }
+
     fun getClubBadge(homeId: String, awayId: String)
     {
         homeCall = apiService.getTeam(homeId)
@@ -84,14 +90,14 @@ class EventDetailPresenter(private val view: EventDetailView, private val apiSer
         eventDetail?.let {
             val match = Match(
                 idEvent = it.idEvent,
-                idHomeTeam = it.idHomeTeam!!,
-                idAwayTeam = it.idAwayTeam!!,
-                intAwayScore = it.intAwayScore!!,
-                intHomeScore = it.intHomeScore!!,
-                strAwayTeam = it.strAwayTeam!!,
-                strHomeTeam = it.strHomeTeam!!,
-                strDate = it.strDate!!,
-                strTime = it.strTime!!
+                idHomeTeam = it.idHomeTeam,
+                idAwayTeam = it.idAwayTeam,
+                intAwayScore = it.intAwayScore,
+                intHomeScore = it.intHomeScore,
+                strAwayTeam = it.strAwayTeam,
+                strHomeTeam = it.strHomeTeam,
+                strDate = it.strDate,
+                strTime = it.strTime
             )
             GlobalScope.launch(Dispatchers.Main) {
                 FootballDatabase(context).matchDao().insertMatch(match)
@@ -104,14 +110,14 @@ class EventDetailPresenter(private val view: EventDetailView, private val apiSer
         eventDetail?.let {
             val match = Match(
                 idEvent = it.idEvent,
-                idHomeTeam = it.idHomeTeam!!,
-                idAwayTeam = it.idAwayTeam!!,
-                intAwayScore = it.intAwayScore!!,
-                intHomeScore = it.intHomeScore!!,
-                strAwayTeam = it.strAwayTeam!!,
-                strHomeTeam = it.strHomeTeam!!,
-                strDate = it.strDate!!,
-                strTime = it.strTime!!
+                idHomeTeam = it.idHomeTeam,
+                idAwayTeam = it.idAwayTeam,
+                intAwayScore = it.intAwayScore,
+                intHomeScore = it.intHomeScore,
+                strAwayTeam = it.strAwayTeam,
+                strHomeTeam = it.strHomeTeam,
+                strDate = it.strDate,
+                strTime = it.strTime
             )
             GlobalScope.launch(Dispatchers.Main) {
                 FootballDatabase(context).matchDao().removeMatch(match)

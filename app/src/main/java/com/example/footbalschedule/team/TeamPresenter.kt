@@ -8,12 +8,12 @@ import retrofit2.Response
 
 class TeamPresenter(val view: TeamView, private val apiService: ApiService)
 {
-    private lateinit var callTeam: Call<TeamResponse>
+    var call: Call<TeamResponse>? = null
 
     fun getTeams(id: String)
     {
-        callTeam = apiService.getTeamList(id)
-        callTeam.enqueue(object : Callback<TeamResponse>
+        call = apiService.getTeamList(id)
+        call?.enqueue(object : Callback<TeamResponse>
         {
             override fun onFailure(call: Call<TeamResponse>, t: Throwable)
             {
@@ -26,5 +26,9 @@ class TeamPresenter(val view: TeamView, private val apiService: ApiService)
             }
 
         })
+    }
+
+    fun stopRequest(){
+        call?.cancel()
     }
 }

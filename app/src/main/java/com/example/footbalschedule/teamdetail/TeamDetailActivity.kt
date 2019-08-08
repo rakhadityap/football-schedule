@@ -96,4 +96,10 @@ class TeamDetailActivity : AppCompatActivity(), TeamDetailView
         else
             menuItem?.getItem(0)?.icon = ContextCompat.getDrawable(this, R.drawable.ic_favorite_border)
     }
+
+    override fun onPause() {
+        super.onPause()
+
+        presenter.stopRequest()
+    }
 }

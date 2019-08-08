@@ -28,4 +28,8 @@ class StandingsPresenter(private val view: StandingsView, private val apiService
 
         })
     }
+
+    fun stopRequest(){
+        call?.cancel()
+    }
 }

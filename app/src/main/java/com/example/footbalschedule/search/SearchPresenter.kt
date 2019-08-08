@@ -9,13 +9,13 @@ import retrofit2.Response
 
 class SearchPresenter(val view: SearchView, private val apiService: ApiService)
 {
-    private lateinit var callTeam: Call<TeamResponse>
-    private lateinit var callMatch: Call<MatchSearchResponse>
+    var callTeam: Call<TeamResponse>? = null
+    var callMatch: Call<MatchSearchResponse>? = null
 
     fun searchTeam(key: String)
     {
         callTeam = apiService.searchTeams(key)
-        callTeam.enqueue(object : Callback<TeamResponse>
+        callTeam?.enqueue(object : Callback<TeamResponse>
         {
             override fun onFailure(call: Call<TeamResponse>, t: Throwable)
             {
@@ -32,7 +32,7 @@ class SearchPresenter(val view: SearchView, private val apiService: ApiService)
     fun searchMatch(key: String)
     {
         callMatch = apiService.searchMatch(key)
-        callMatch.enqueue(object : Callback<MatchSearchResponse>
+        callMatch?.enqueue(object : Callback<MatchSearchResponse>
         {
             override fun onFailure(call: Call<MatchSearchResponse>, t: Throwable)
             {
@@ -45,5 +45,10 @@ class SearchPresenter(val view: SearchView, private val apiService: ApiService)
             }
 
         })
+    }
+
+    fun stopRequest(){
+        callMatch?.cancel()
+        callTeam?.cancel()
     }
 }

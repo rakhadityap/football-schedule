@@ -14,6 +14,7 @@ import com.example.footbalschedule.R
 import com.example.footbalschedule.app.Const.apiService
 import com.example.footbalschedule.app.done
 import com.example.footbalschedule.app.refresh
+import com.example.footbalschedule.app.showToast
 import com.example.footbalschedule.model.Team
 import com.example.footbalschedule.teamdetail.TeamDetailActivity
 import kotlinx.android.synthetic.main.fragment_team.view.*
@@ -24,7 +25,7 @@ import kotlinx.android.synthetic.main.fragment_team.view.*
  */
 class TeamFragment : Fragment(), TeamView
 {
-    private lateinit var presenter: TeamPresenter
+    private var presenter = TeamPresenter(this, apiService)
     private lateinit var adapter: TeamRecyclerViewAdapter
     private lateinit var mContext: Context
     private val teams: MutableList<Team> = mutableListOf()
@@ -36,7 +37,6 @@ class TeamFragment : Fragment(), TeamView
     {
         val view = inflater.inflate(R.layout.fragment_team, container, false)
         mContext = activity!!.applicationContext
-        presenter = TeamPresenter(this, apiService)
         adapter = TeamRecyclerViewAdapter(teams, mContext) {
             val intent = Intent(mContext, TeamDetailActivity::class.java).apply {
                 putExtra("idTeam", it.idTeam)
@@ -71,6 +71,12 @@ class TeamFragment : Fragment(), TeamView
 
     override fun showError(message: String)
     {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        showToast(mContext, message)
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        presenter.stopRequest()
     }
 }

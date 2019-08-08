@@ -22,7 +22,7 @@ class LeagueActivity : AppCompatActivity(), LeagueView
     val adapter: LeagueRecyclerviewAdapter
 
     val leagueList: MutableList<League> = mutableListOf()
-    val leaguePresenter = LeaguePresenter(this, apiService)
+    val presenter = LeaguePresenter(this, apiService)
 
     init
     {
@@ -43,10 +43,10 @@ class LeagueActivity : AppCompatActivity(), LeagueView
         league_list_recview.layoutManager = GridLayoutManager(this, 2, RecyclerView.VERTICAL, false)
         league_list_recview.adapter = adapter
         league_list_refreshview.setOnRefreshListener {
-            leaguePresenter.getLeagues()
+            presenter.getLeagues()
         }
         league_list_refreshview.refresh()
-        leaguePresenter.getLeagues()
+        presenter.getLeagues()
     }
 
     override fun showLeague(leagues: List<League>?)
@@ -81,5 +81,11 @@ class LeagueActivity : AppCompatActivity(), LeagueView
             }
         }
         return true
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        presenter.stopRequest()
     }
 }

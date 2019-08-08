@@ -6,14 +6,14 @@ import androidx.room.*
 data class Match(
     @PrimaryKey
     val idEvent: String,
-    val strDate: String,
-    val strTime: String,
-    val strHomeTeam: String,
-    val strAwayTeam: String,
-    val intHomeScore: String = "0",
-    val intAwayScore: String = "0",
-    val idHomeTeam: String,
-    val idAwayTeam: String
+    val strDate: String?,
+    val strTime: String?,
+    val strHomeTeam: String?,
+    val strAwayTeam: String?,
+    val intHomeScore: String? = "0",
+    val intAwayScore: String? = "0",
+    val idHomeTeam: String?,
+    val idAwayTeam: String?
 )
 {
     @Dao

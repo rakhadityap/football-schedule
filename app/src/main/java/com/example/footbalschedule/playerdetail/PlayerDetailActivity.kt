@@ -14,6 +14,8 @@ import kotlinx.android.synthetic.main.activity_player_detail.*
 
 class PlayerDetailActivity : AppCompatActivity(), PlayerView
 {
+    val presenter = PlayerDetailPresenter(this, apiService)
+
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
@@ -23,7 +25,6 @@ class PlayerDetailActivity : AppCompatActivity(), PlayerView
         supportActionBar?.title = "Player Detail"
 
         val idPlayer = intent?.getStringExtra("idPlayer") ?: "0000"
-        val presenter = PlayerDetailPresenter(this, apiService)
 
         player_detail_refresh.setOnRefreshListener {
             presenter.getPlayerDetail(idPlayer)
@@ -65,5 +66,11 @@ class PlayerDetailActivity : AppCompatActivity(), PlayerView
             android.R.id.home -> finish()
         }
         return true
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        presenter.stopRequest()
     }
 }

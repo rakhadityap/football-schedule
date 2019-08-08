@@ -22,19 +22,18 @@ import kotlinx.android.synthetic.main.fragment_standings.view.*
  * A simple [Fragment] subclass.
  *
  */
-class StandingsFragment : Fragment(), StandingsView
-{
+class StandingsFragment : Fragment(), StandingsView {
     private var mContext: Context? = null
     private val datas: MutableList<Standings> = mutableListOf()
     private lateinit var adapter: StandingsRecyclerViewAdapter
+    private val presenter = StandingsPresenter(this, apiService)
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View?
-    {
+    ): View? {
         val view = inflater.inflate(R.layout.fragment_standings, container, false)
-        val presenter = StandingsPresenter(this, apiService)
 
         mContext = activity?.applicationContext
         adapter = StandingsRecyclerViewAdapter(datas, mContext!!) {
@@ -56,8 +55,7 @@ class StandingsFragment : Fragment(), StandingsView
         return view
     }
 
-    override fun showStandings(standings: List<Standings>?)
-    {
+    override fun showStandings(standings: List<Standings>?) {
         Log.d("View", "Show Standings!!!")
         standings?.let {
             datas.clear()
@@ -67,8 +65,13 @@ class StandingsFragment : Fragment(), StandingsView
         this.view?.standings_refresh?.done()
     }
 
-    override fun showError(message: String)
-    {
+    override fun showError(message: String) {
         showToast(mContext!!, message)
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        presenter.stopRequest()
     }
 }

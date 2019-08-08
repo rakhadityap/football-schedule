@@ -8,11 +8,11 @@ import retrofit2.Response
 
 class PlayerDetailPresenter(val view: PlayerView, private val apiService: ApiService)
 {
-    private lateinit var call: Call<PlayerResponse>
+    var call: Call<PlayerResponse>? = null
     fun getPlayerDetail(id: String)
     {
         call = apiService.getPlayer(id)
-        call.enqueue(object : Callback<PlayerResponse>
+        call?.enqueue(object : Callback<PlayerResponse>
         {
             override fun onFailure(call: Call<PlayerResponse>, t: Throwable)
             {
@@ -26,5 +26,9 @@ class PlayerDetailPresenter(val view: PlayerView, private val apiService: ApiSer
 
         })
 
+    }
+
+    fun stopRequest(){
+        call?.cancel()
     }
 }

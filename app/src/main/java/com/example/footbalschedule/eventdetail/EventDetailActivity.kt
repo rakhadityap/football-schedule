@@ -1,6 +1,7 @@
 package com.example.footbalschedule.eventdetail
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
@@ -128,5 +129,11 @@ class EventDetailActivity : AppCompatActivity(), EventDetailView
             menuItem?.getItem(0)?.icon = ContextCompat.getDrawable(this, R.drawable.ic_favorite)
         else
             menuItem?.getItem(0)?.icon = ContextCompat.getDrawable(this, R.drawable.ic_favorite_border)
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        presenter.stopRequest()
     }
 }

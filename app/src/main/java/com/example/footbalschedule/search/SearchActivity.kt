@@ -49,9 +49,7 @@ class SearchActivity : AppCompatActivity(), SearchView
         }
     }
 
-    val presenter by lazy {
-        SearchPresenter(this, apiService)
-    }
+    val presenter = SearchPresenter(this, apiService)
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
@@ -141,11 +139,6 @@ class SearchActivity : AppCompatActivity(), SearchView
         return true
     }
 
-    /*override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
-        menu?.getItem(R.id.search_id)?.expandActionView()
-        return true
-    }*/
-
     override fun onOptionsItemSelected(item: MenuItem?): Boolean
     {
         when (item?.itemId)
@@ -153,5 +146,11 @@ class SearchActivity : AppCompatActivity(), SearchView
             android.R.id.home -> finish()
         }
         return true
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        presenter.stopRequest()
     }
 }

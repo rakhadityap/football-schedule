@@ -14,12 +14,12 @@ import retrofit2.Response
 
 class TeamDetailPresenter(private val view: TeamDetailView, private val apiService: ApiService)
 {
-    private lateinit var call: Call<TeamResponse>
+    private var call: Call<TeamResponse>? = null
 
     fun getTeamDetail(id: String)
     {
         call = apiService.getTeam(id)
-        call.enqueue(object : Callback<TeamResponse>
+        call?.enqueue(object : Callback<TeamResponse>
         {
             override fun onFailure(call: Call<TeamResponse>, t: Throwable)
             {
@@ -32,6 +32,10 @@ class TeamDetailPresenter(private val view: TeamDetailView, private val apiServi
             }
 
         })
+    }
+
+    fun stopRequest(){
+        call?.cancel()
     }
 
     fun addToFavorite(context: Context, team: Team?)

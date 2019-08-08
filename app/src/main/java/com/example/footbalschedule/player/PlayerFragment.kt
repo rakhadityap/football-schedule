@@ -79,4 +79,10 @@ class PlayerFragment : Fragment(), PlayerView
     {
         showToast(mContext, message)
     }
+
+    override fun onPause() {
+        super.onPause()
+
+        presenter.stopRequest()
+    }
 }

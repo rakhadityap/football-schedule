@@ -15,6 +15,8 @@ import kotlinx.android.synthetic.main.activity_league_detail.*
 
 class LeagueDetailActivity : AppCompatActivity(), LeagueDetailView
 {
+    val presenter = LeagueDetailPresenter(this, apiService)
+
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
@@ -28,7 +30,6 @@ class LeagueDetailActivity : AppCompatActivity(), LeagueDetailView
 
         val leagueId = intent.getStringExtra("idLeague")
 
-        val presenter = LeagueDetailPresenter(this, apiService)
         presenter.getLeagueDetail(leagueId)
     }
 
@@ -67,5 +68,11 @@ class LeagueDetailActivity : AppCompatActivity(), LeagueDetailView
             })
         }
         return true
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        presenter.stopRequest()
     }
 }

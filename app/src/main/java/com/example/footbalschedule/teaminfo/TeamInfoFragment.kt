@@ -18,13 +18,14 @@ import kotlinx.android.synthetic.main.fragment_team_info.view.*
 
 class TeamInfoFragment : Fragment(), TeamInfoView
 {
+    val presenter = TeamInfoPresenter(this, apiService)
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View?
     {
         val view = inflater.inflate(R.layout.fragment_team_info, container, false)
-        val presenter = TeamInfoPresenter(this, apiService)
         val idTeam = activity?.intent?.getStringExtra("idTeam") ?: "0000"
 
         view.team_info_refresh.setOnRefreshListener {
@@ -54,5 +55,11 @@ class TeamInfoFragment : Fragment(), TeamInfoView
     override fun showError(message: String)
     {
         showToast(activity!!.applicationContext, message)
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        presenter.stopRequest()
     }
 }

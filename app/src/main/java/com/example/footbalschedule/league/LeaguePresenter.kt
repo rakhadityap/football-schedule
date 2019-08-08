@@ -8,10 +8,11 @@ import retrofit2.Response
 
 class LeaguePresenter(private val view: LeagueView, private val apiService: ApiService)
 {
+    var call: Call<LeagueResponse>? = null
     fun getLeagues()
     {
-        val call: Call<LeagueResponse> = apiService.getLeagueList()
-        call.enqueue(object : Callback<LeagueResponse>
+        call = apiService.getLeagueList()
+        call?.enqueue(object : Callback<LeagueResponse>
         {
             override fun onFailure(call: Call<LeagueResponse>, t: Throwable)
             {
@@ -24,5 +25,9 @@ class LeaguePresenter(private val view: LeagueView, private val apiService: ApiS
             }
 
         })
+    }
+
+    fun stopRequest(){
+        call?.cancel()
     }
 }
